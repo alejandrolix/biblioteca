@@ -90,30 +90,38 @@ function mostrarInfoLibro(idLibro) {
 
                 let imgLibro = document.getElementById('imagen');
                 imgLibro.setAttribute('src', 'imagenes/' + libro.imagen + '.jpg');
-                imgLibro.setAttribute('width', '50%');
                 imgLibro.setAttribute('alt', libro.titulo);
 
-                // let modal = document.getElementById('verLibro');
-                // modal.innerHTML = '<div class="modal-dialog">\n' +
-                //     '                                        <div class="modal-content">\n' +
-                //     '                                            <div class="modal-header">\n' +
-                //     '                                                <h5 class="modal-title" id="exampleModalLabel">Información del libro ' + libro.titulo + '</h5>\n' +
-                //     '                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">\n' +
-                //     '                                                    <span aria-hidden="true">&times;</span>\n' +
-                //     '                                                </button>\n' +
-                //     '                                            </div>\n' +
-                //     '                                            <div class="modal-body">\n' +
-                //     '                                                <img src="imagenes/' + libro.imagen + '" alt="Segway">\n' +
-                //     '                                                <p class="card-text">' + libro.titulo + '</p>\n' +
-                //     '                                                <p class="card-text">' + libro.autor.nombre + '</p>\n' +
-                //     '                                                <p class="card-text">' + libro.isbn + '</p>\n' +
-                //     '                                                <p class="card-text">' + precio + '</p>\n' +
-                //     '                                            </div>\n' +
-                //     '                                            <div class="modal-footer">\n' +
-                //     '                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>\n' +
-                //     '                                            </div>\n' +
-                //     '                                        </div>\n' +
-                //     '                                    </div>\n';
+                let fichaTecnica = document.querySelector('.infoLibro');
+                fichaTecnica.innerHTML = '<div class="row">\n' +
+                '                                    <div class="col-md-12">\n' +
+                '                                        <p class="font-weight-bold fichaTecnica text-center">Ficha Técnica</p>\n' +
+                '                                    </div>\n' +
+                '                                </div>\n' +
+                '                                <div class="row">\n' +
+                '                                    <div class="col-md-4">\n' +
+                '                                        <p>Autor</p>\n' +
+                '                                    </div>\n' +
+                '                                    <div class="col-md-8">\n' +
+                '                                        <p>' + libro.autor.nombre + '</p>\n' +
+                '                                    </div>\n' +
+                '                                </div>\n' +
+                '                                <div class="row">\n' +
+                '                                    <div class="col-md-4">\n' +
+                '                                        <p>ISBN</p>\n' +
+                '                                    </div>\n' +
+                '                                    <div class="col-md-8">\n' +
+                '                                        <p>' + libro.isbn + '</p>\n' +
+                '                                    </div>\n' +
+                '                                </div>\n' +
+                '                                <div class="row">\n' +
+                '                                    <div class="col-md-4">\n' +
+                '                                        <p>Precio</p>\n' +
+                '                                    </div>\n' +
+                '                                    <div class="col-md-8">\n' +
+                '                                        <p>' + precio + '</p>\n' +
+                '                                    </div>\n' +
+                    '                      </div>';
             }
         }
     });

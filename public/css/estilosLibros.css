@@ -50,3 +50,11 @@ footer p {
 .bg-light {
   background-color: #ffffff !important;
 }
+
+.infoLibro {
+  padding-left: 0 !important;
+}
+
+.fichaTecnica {
+  font-size: 1.1rem;
+}

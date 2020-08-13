@@ -45,6 +45,7 @@
                 </div>
             </div>
 
+            <!-- Modal -->
             <div class="modal fade" id="verLibro" tabindex="-1" aria-labelledby="verLibro" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -55,7 +56,16 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <img id="imagen" class="img-fluid">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <img id="imagen" class="img-fluid mb-4">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="container-fluid infoLibro"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -63,6 +73,7 @@
                     </div>
                 </div>
             </div>
+
         </main>
 
         <footer class="container">
