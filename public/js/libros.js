@@ -57,7 +57,7 @@
 
 window.addEventListener('load', () => {
     // let libros = getLibros();
-    
+
     let http = new XMLHttpRequest();
     http.open('GET', 'http://localhost:8080/libros', true);
     http.addEventListener('readystatechange', () => {
@@ -98,7 +98,6 @@ window.addEventListener('load', () => {
                        '                                        <small class="text-muted">' + precio + '</small>\n' +
                        '                                    </div>\n' +
                        '                                </div>\n' +
-                       '\n' +
                        '                            </div>\n' +
                        '                        </div>';
                }
