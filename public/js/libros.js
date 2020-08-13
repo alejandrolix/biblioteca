@@ -64,6 +64,11 @@ window.addEventListener('load', () => {
         let libro = libros.libros[i];
 
         if (libro.activo) {
+            let precio = libro.precio.toLocaleString('es-ES', {
+                style: 'currency',
+                currency: 'EUR'
+            });
+
             cadenaLibros = cadenaLibros + '<div class="col-md-4">\n' +
                 '                            <div class="card mb-4 shadow-sm">\n' +
                 '                                <img src="imagenes/' + libro.imagen + '" class="img-fluid" alt="Segway">\n' +
@@ -82,10 +87,7 @@ window.addEventListener('load', () => {
                 '                                                <i class="fas fa-trash"></i>\n' +
                 '                                            </a>\n' +
                 '                                        </div>\n' +
-                '                                        <small class="text-muted">' + libro.precio.toLocaleString('es-ES', {
-                                                            style: 'currency',
-                                                            currency: 'EUR'
-                                                        }) + '</small>\n' +
+                '                                        <small class="text-muted">' + precio + '</small>\n' +
                 '                                    </div>\n' +
                 '                                </div>\n' +
                 '\n' +
