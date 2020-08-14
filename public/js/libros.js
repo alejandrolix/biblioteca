@@ -1,19 +1,17 @@
 function getLibros() {
-    let http = new XMLHttpRequest();
-    http.open('GET', 'http://localhost:8080/libros', true);
-    http.addEventListener('readystatechange', () => {
-
-        if (http.readyState == 4 && http.status == 200) {
-            let resultado = JSON.parse(http.responseText);
-
+    fetch('http://localhost:8080/libros')
+        .then((resultado) => {
+            return resultado.json();
+        })
+        .then((resultado) => {
             if (resultado.ok) {
                 let libros = resultado.data;
                 mostrarLibros(libros);
             }
-        }
-    });
-
-    http.send();
+        })
+        .catch(() => {
+            alert('Ha habido un error al obtener los libros');
+        });
 }
 
 window.addEventListener('load', () => {
@@ -71,12 +69,11 @@ function mostrarLibros(libros) {
 }
 
 function mostrarInfoLibro(idLibro) {
-    let http = new XMLHttpRequest();
-    http.open('GET', 'http://localhost:8080/libros/' + idLibro, true);
-    http.addEventListener('readystatechange', () => {
-
-        if (http.readyState == 4 && http.status == 200) {
-            let resultado = JSON.parse(http.responseText);
+    fetch('http://localhost:8080/libros/' + idLibro)
+        .then((resultado) => {
+            return resultado.json();
+        })
+        .then((resultado) => {
 
             if (resultado.ok) {
                 let libro = resultado.data;
@@ -94,37 +91,37 @@ function mostrarInfoLibro(idLibro) {
 
                 let fichaTecnica = document.querySelector('.infoLibro');
                 fichaTecnica.innerHTML = '<div class="row">\n' +
-                '                                    <div class="col-md-12">\n' +
-                '                                        <p class="font-weight-bold fichaTecnica text-center">Ficha Técnica</p>\n' +
-                '                                    </div>\n' +
-                '                                </div>\n' +
-                '                                <div class="row">\n' +
-                '                                    <div class="col-md-4">\n' +
-                '                                        <p>Autor</p>\n' +
-                '                                    </div>\n' +
-                '                                    <div class="col-md-8">\n' +
-                '                                        <p>' + libro.autor.nombre + '</p>\n' +
-                '                                    </div>\n' +
-                '                                </div>\n' +
-                '                                <div class="row">\n' +
-                '                                    <div class="col-md-4">\n' +
-                '                                        <p>ISBN</p>\n' +
-                '                                    </div>\n' +
-                '                                    <div class="col-md-8">\n' +
-                '                                        <p>' + libro.isbn + '</p>\n' +
-                '                                    </div>\n' +
-                '                                </div>\n' +
-                '                                <div class="row">\n' +
-                '                                    <div class="col-md-4">\n' +
-                '                                        <p>Precio</p>\n' +
-                '                                    </div>\n' +
-                '                                    <div class="col-md-8">\n' +
-                '                                        <p>' + precio + '</p>\n' +
-                '                                    </div>\n' +
+                    '                                    <div class="col-md-12">\n' +
+                    '                                        <p class="font-weight-bold fichaTecnica text-center">Ficha Técnica</p>\n' +
+                    '                                    </div>\n' +
+                    '                                </div>\n' +
+                    '                                <div class="row">\n' +
+                    '                                    <div class="col-md-4">\n' +
+                    '                                        <p>Autor</p>\n' +
+                    '                                    </div>\n' +
+                    '                                    <div class="col-md-8">\n' +
+                    '                                        <p>' + libro.autor.nombre + '</p>\n' +
+                    '                                    </div>\n' +
+                    '                                </div>\n' +
+                    '                                <div class="row">\n' +
+                    '                                    <div class="col-md-4">\n' +
+                    '                                        <p>ISBN</p>\n' +
+                    '                                    </div>\n' +
+                    '                                    <div class="col-md-8">\n' +
+                    '                                        <p>' + libro.isbn + '</p>\n' +
+                    '                                    </div>\n' +
+                    '                                </div>\n' +
+                    '                                <div class="row">\n' +
+                    '                                    <div class="col-md-4">\n' +
+                    '                                        <p>Precio</p>\n' +
+                    '                                    </div>\n' +
+                    '                                    <div class="col-md-8">\n' +
+                    '                                        <p>' + precio + '</p>\n' +
+                    '                                    </div>\n' +
                     '                      </div>';
             }
-        }
-    });
-
-    http.send();
+        })
+        .catch(() => {
+            alert('Ha habido un error al obtener los datos del libro');
+        });
 }
