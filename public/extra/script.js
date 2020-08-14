@@ -23,17 +23,13 @@ function comprobarImporte() {
 }
 
 function obtenerDivisas() {
-    let http = new XMLHttpRequest();
-    http.open('GET', 'https://api.exchangeratesapi.io/latest', true);
-    http.addEventListener('readystatechange', () => {
-        if (http.readyState == 4 && http.status == 200) {
-            let resultado = JSON.parse(http.responseText);
-
+    fetch('https://api.exchangeratesapi.io/latest')
+        .then((respuesta) => {
+            return respuesta.json();
+        })
+        .then((resultado) => {
             mostrarDivisas(resultado);
-        }
-    });
-
-    http.send();
+        });
 }
 
 function mostrarDivisas(resultado) {

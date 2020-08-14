@@ -20,15 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25e7740e-a30d-4c4e-869e-e7bef4396e0e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/extra/conversorMonedas.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/promesa.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/promesas.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/conversorMonedas.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/extra/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/extra/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/extra/script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
