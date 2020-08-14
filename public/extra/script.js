@@ -1,14 +1,26 @@
 let btnConvertir = document.getElementById('btnConvertir');
-btnConvertir.addEventListener('click', () => {
-    let txtEuros = document.getElementById('txtEuros').value;
+btnConvertir.addEventListener('click', comprobarImporte);
 
-    if (txtEuros === '' || isNaN(txtEuros)) {
-        alert('Tiene que introducir un número');
+function comprobarImporte() {
+    let importe = document.getElementById('importe').value;
+
+    if (importe === '' || isNaN(importe)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Importe incorrecto',
+            text: 'Debes introducir un importe numérico distinto de 0',
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        });
     }
     else {
         obtenerDivisas();
     }
-});
+}
 
 function obtenerDivisas() {
     let http = new XMLHttpRequest();
@@ -25,8 +37,8 @@ function obtenerDivisas() {
 }
 
 function mostrarDivisas(resultado) {
-    let txtEuros = document.getElementById('txtEuros').value;
-    let euros = Number(txtEuros);
+    let importe = document.getElementById('importe').value;
+    let euros = Number(importe);
     let divisas = document.getElementById('divisas');
     let conversion = 0;
 
@@ -73,5 +85,10 @@ function mostrarDivisas(resultado) {
 
         p.appendChild(texto);
         divisas.appendChild(p);
+
+        Swal.fire({
+           icon: 'success',
+           title: 'Conversión Correcta'
+        });
     }
 }
