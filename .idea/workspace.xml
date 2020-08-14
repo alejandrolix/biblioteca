@@ -21,9 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="25e7740e-a30d-4c4e-869e-e7bef4396e0e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/estilosLibros.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/estilosLibros.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/libros.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/libros.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/libros.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/libros.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro.html" beforeDir="false" afterPath="$PROJECT_DIR$/extra/conversorMonedas.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euro.js" beforeDir="false" afterPath="$PROJECT_DIR$/extra/script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,14 +63,15 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2020.1.4\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\formacion\Downloads\libreria\public" />
-      <recent name="C:\Users\formacion\Downloads\libreria\css" />
-      <recent name="C:\Users\formacion\Downloads\libreria\imagenes" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\formacion\Downloads\libreria" />
       <recent name="C:\Users\formacion\Downloads\libreria\css" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\formacion\Downloads\libreria\extra" />
+      <recent name="C:\Users\formacion\Downloads\libreria\public" />
+      <recent name="C:\Users\formacion\Downloads\libreria\css" />
+      <recent name="C:\Users\formacion\Downloads\libreria\imagenes" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -268,10 +268,10 @@
     </state>
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1597301015025" />
     <state x="451" y="183" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1597329081945" />
-    <state x="539" y="183" width="840" height="856" key="search.everywhere.popup" timestamp="1597337453225">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1597386667155">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1597316686527" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1597386667155" />
     <state x="539" y="183" width="840" height="856" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1597337453225" />
   </component>
 </project>
