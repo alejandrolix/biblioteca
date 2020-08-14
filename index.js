@@ -1,157 +1,106 @@
 const express = require('express');
 
 let app = express();
+const mysql = require('mysql');
+
+let conexion = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'biblioteca2'
+});
+
+conexion.connect((error) => {
+    if (error) {
+        console.log("Error al conectar con la BD:", error);
+    } else {
+        console.log("Conexión satisfactoria");
+    }
+});
+
 // app.use('/', express.static(__dirname + '/public'));     Para crear un servidor web de contenido estático.
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     next();
 });
 
 app.get('/libros', (req, res) => {
-    let libros = {
-        mensaje: 'hola, bienvenido',
-        ok: true,
-        data: [
-            {
-                id: 1,
-                titulo: 'El capitán Alatriste',
-                autor: {
-                    id: 2,
-                    nombre: 'Arturo Pérez Reverte'
-                },
-                isbn: 'cscscscsmmofsdvsd',
-                precio: 25.50,
-                activo: true,
-                imagen: 'elCapitanAlatriste'
-            },
-            {
-                id: 2,
-                titulo: 'El Nombre de la Rosa',
-                autor: {
-                    id: 3,
-                    nombre: 'Umberto Eco'
-                },
-                isbn: '444A',
-                precio: 45,
-                activo: true,
-                imagen: 'elNombreDeLaRosa'
-            },
-            {
-                id: 3,
-                titulo: 'El Señor de los Anillos',
-                autor: {
-                    id: 4,
-                    nombre: 'Tolkin'
-                },
-                isbn: '555A',
-                precio: 70,
-                activo: true,
-                imagen: 'elSenorDeLosAnillos'
-            },
-            {
-                id: 3,
-                titulo: 'Los Pilares de la tierra',
-                autor: {
-                    id: 4,
-                    nombre: 'Ken Follet'
-                },
-                isbn: '555A',
-                precio: 70,
-                activo: false,
-                imagen: 'nodeJs'
-            }
-        ]
-    };
+    let sql = 'select l.cod, l.titulo, l.precio, l.imagen, l.activo, a.nombre as autor ' +
+              'from libros l ' +
+              '     left join autor a on a.cod = l.cod_autor ' +
+              'order by l.titulo;';
 
-    res.status(200)
-       .send(libros);
+    conexion.query(sql, (error, resultado) => {
+        if (error) {
+            res.status(500).send({
+               ok: false,
+               mensaje: error.message
+            });
+        }
+        else {
+            let libros = resultado;
+
+            res.status(200).send({
+                ok: true,
+                mensaje: 'Libros obtenidos correctamente',
+                data: libros
+            });
+        }
+    });
 });
 
 app.get('/libros/:id', (req, res) => {
-    let libros = {
-        mensaje: 'hola, bienvenido',
-        ok: true,
-        data: [
-            {
-                id: 1,
-                titulo: 'El capitán Alatriste',
-                autor: {
-                    id: 2,
-                    nombre: 'Arturo Pérez Reverte'
-                },
-                isbn: 'cscscscsmmofsdvsd',
-                precio: 25.50,
-                activo: true,
-                imagen: 'elCapitanAlatriste'
-            },
-            {
-                id: 2,
-                titulo: 'El Nombre de la Rosa',
-                autor: {
-                    id: 3,
-                    nombre: 'Umberto Eco'
-                },
-                isbn: '444A',
-                precio: 45,
-                activo: true,
-                imagen: 'elNombreDeLaRosa'
-            },
-            {
-                id: 3,
-                titulo: 'El Señor de los Anillos',
-                autor: {
-                    id: 4,
-                    nombre: 'Tolkin'
-                },
-                isbn: '555A',
-                precio: 70,
-                activo: true,
-                imagen: 'elSenorDeLosAnillos'
-            },
-            {
-                id: 3,
-                titulo: 'Los Pilares de la tierra',
-                autor: {
-                    id: 4,
-                    nombre: 'Ken Follet'
-                },
-                isbn: '555A',
-                precio: 70,
-                activo: false,
-                imagen: 'nodeJs'
-            }
-        ]
-    };
-    let idLibro = parseInt(req.params.id);
-    let resultado = {
-        ok: true,
-        mensaje: 'Libro encontrado'
-    };
-    let existeLibro = false;
-    let codigoRespuesta = 0;
+    let idLibro = req.params.id;
+    let sql = 'select l.titulo, l.isbn, l.precio, l.imagen, a.nombre as autor ' +
+              'from libros l ' +
+              '     left join autor a on a.cod = l.cod_autor ' +
+              'where l.cod = ?;';
 
-    for (let i = 0; i < libros.data.length; i++) {
-        let libro = libros.data[i];
-
-        if (libro.id == idLibro) {
-            existeLibro = true;
-            resultado.data = libro;
-            codigoRespuesta = 200;
-
-            break;
+    conexion.query(sql, idLibro, (error, resultado) => {
+        if (error) {
+            res.status(500).send({
+                ok: false,
+                mensaje: error.message
+            });
         }
-    }
+        else {
+            let libro = resultado[0];
 
-    if (!existeLibro) {
-        codigoRespuesta = 404;
-        resultado.ok = false;
-        resultado.mensaje = 'No se ha encontrado el libro';
-    }
+            res.status(200).send({
+                ok: true,
+                mensaje: 'Libro obtenido correctamente',
+                data: libro
+            });
+        }
+    });
+});
 
-    res.status(codigoRespuesta)
-       .json(resultado);
+app.delete('/libros/:id', (req, res) => {
+    conexion.query("DELETE FROM libros WHERE cod = ?", req.params.id, (error, resultado) => {
+            if (error) {
+                res.status(500).send({
+                    ok: false,
+                    mensaje: 'Error eliminando libro'
+                });
+            }
+            else {
+                if (resultado.affectedRows != 0) {
+                    res.status(200).json({
+                        ok: true,
+                        mensaje: 'Libro eliminado correctamente'
+                    });
+                }
+                else {
+                    res.status(404).json({
+                        ok: false,
+                        mensaje: 'No existe el libro'
+                    });
+                }
+            }
+    });
 });
 
 app.listen(8080);
