@@ -1,0 +1,11 @@
+version: '3'
+services:
+  mariadb:
+    container_name: mariadb
+    image: mariadb:10.5.4
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: manuscrito3po
+      MYSQL_USER: libreriaUser
+      MYSQL_PASSWORD: libreria

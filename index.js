@@ -1,24 +1,26 @@
 const express = require('express');
-
-let app = express();
 const mysql = require('mysql');
 
-let conexion = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'manuscrito3po',
-    database: 'libreria'
-});
+let app = express();
 
-conexion.connect((error) => {
-    if (error) {
-        console.log("Error al conectar con la BD:", error);
-    } else {
-        console.log("Conexión satisfactoria");
-    }
-});
+function obtenerConexionBd() {
+    let conexion = mysql.createConnection({
+        host: 'localhost',
+        user: 'libreriaUser',
+        password: 'libreria',
+        database: 'libreria'
+    });
 
-// app.use('/', express.static(__dirname + '/public'));     Para crear un servidor web de contenido estático.
+    conexion.connect(error => {
+        if (error) {
+            console.log("Error al conectar con la BD: ", error);
+        }
+    });
+
+    return conexion;
+}
+
+// app.use('/', express.static(__dirname + '/public'));     Para crear un servidor web de páginas estáticas.
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -28,78 +30,120 @@ app.use((req, res, next) => {
 });
 
 app.get('/libros', (req, res) => {
-    let sql = 'select l.cod, l.titulo, l.precio, l.imagen, l.activo, a.nombre as autor ' +
-              'from libros l ' +
-              '     left join autor a on a.cod = l.cod_autor ' +
-              'order by l.titulo;';
+    let sql = `select l.cod, l.titulo, l.precio, l.imagen, l.activo, a.nombre as autor 
+               from libros l 
+                    left join autor a on a.cod = l.cod_autor
+               order by l.titulo;`;
+    let codigoRespuesta = 0;
+    let respuesta = null;
 
+    let conexion = obtenerConexionBd();
     conexion.query(sql, (error, resultado) => {
         if (error) {
-            res.status(500).send({
-               ok: false,
-               mensaje: error.message
-            });
+            codigoRespuesta = 500;
+            respuesta = {
+                ok: false,
+                mensaje: error.message
+            };
         }
         else {
             let libros = resultado;
-
-            res.status(200).send({
+            codigoRespuesta = 200;
+            respuesta = {
                 ok: true,
                 mensaje: 'Libros obtenidos correctamente',
                 data: libros
-            });
+            };
         }
+
+        conexion.end();
+
+        res.status(codigoRespuesta)
+           .send(respuesta);
     });
 });
 
 app.get('/libros/:id', (req, res) => {
     let idLibro = req.params.id;
-    let sql = 'select l.titulo, l.isbn, l.precio, l.imagen, a.nombre as autor ' +
-              'from libros l ' +
-              '     left join autor a on a.cod = l.cod_autor ' +
-              'where l.cod = ?;';
+    let sql = `select l.titulo, l.isbn, l.precio, l.imagen, a.nombre as autor 
+               from libros l 
+                    left join autor a on a.cod = l.cod_autor 
+               where l.cod = ?;`;
+    let codigoRespuesta = 0;
+    let respuesta = null;
 
+    let conexion = obtenerConexionBd();
     conexion.query(sql, idLibro, (error, resultado) => {
         if (error) {
-            res.status(500).send({
+            codigoRespuesta = 500;
+            respuesta = {
                 ok: false,
                 mensaje: error.message
-            });
+            };
         }
         else {
-            let libro = resultado[0];
-
-            res.status(200).send({
-                ok: true,
-                mensaje: 'Libro obtenido correctamente',
-                data: libro
-            });
+            if (resultado.length == 0) {
+                codigoRespuesta = 404;
+                respuesta = {
+                    ok: false,
+                    mensaje: 'No existe el libro con id ' + idLibro
+                };
+            }
+            else {
+                let libro = resultado[0];
+                codigoRespuesta = 200;
+                respuesta = {
+                    ok: true,
+                    mensaje: 'Libro obtenido correctamente',
+                    data: libro
+                };
+            }
         }
+
+        conexion.end();
+
+        res.status(codigoRespuesta)
+           .send(respuesta);
     });
 });
 
 app.delete('/libros/:id', (req, res) => {
-    conexion.query("DELETE FROM libros WHERE cod = ?", req.params.id, (error, resultado) => {
-            if (error) {
-                res.status(500).send({
-                    ok: false,
-                    mensaje: 'Error eliminando libro'
-                });
+    let codigoRespuesta = 0;
+    let respuesta = null;
+    let idLibro = req.params.id;
+    let sql = `delete from libros
+               where cod = ?;`;
+
+    let conexion = obtenerConexionBd();
+    conexion.query(sql, idLibro, (error, resultado) => {
+        if (error) {
+            codigoRespuesta = 500;
+            respuesta = {
+                ok: false,
+                mensaje: 'Error eliminando libro con id ' + idLibro
+            };
+        }
+        else {
+            if (resultado.affectedRows != 0) {
+                codigoRespuesta = 200;
+                respuesta = {
+                    ok: true,
+                    mensaje: 'Libro eliminado correctamente'
+                };
             }
             else {
-                if (resultado.affectedRows != 0) {
-                    res.status(200).json({
-                        ok: true,
-                        mensaje: 'Libro eliminado correctamente'
-                    });
-                }
-                else {
-                    res.status(404).json({
-                        ok: false,
-                        mensaje: 'No existe el libro'
-                    });
-                }
+                codigoRespuesta = 404;
+                respuesta = {
+                    ok: false,
+                    mensaje: 'No existe el libro con id ' + idLibro
+                };
             }
+        }
+
+        conexion.end();
+
+        res.status(codigoRespuesta)
+           .json(respuesta);
     });
 });
 

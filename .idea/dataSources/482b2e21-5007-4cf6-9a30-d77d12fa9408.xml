@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="MySQL - libreria@localhost">
+<dataSource name="libreria@localhost">
   <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.19">
     <root id="1">
       <ServerVersion>10.5.4</ServerVersion>
@@ -1025,77 +1025,82 @@
     <collation id="327" parent="1" name="utf8mb4_vietnamese_ci">
       <Charset>utf8mb4</Charset>
     </collation>
-    <user id="328" parent="1" name="mariadb.sys">
+    <user id="328" parent="1" name="libreriaUser">
+      <Host>%</Host>
+      <ObjectGrants>SELECT,INSERT,UPDATE,DELETE|libreria:null!
+</ObjectGrants>
+    </user>
+    <user id="329" parent="1" name="mariadb.sys">
       <Host>localhost</Host>
       <ObjectGrants>SELECT,UPDATE,DELETE|mysql.global_priv:null
 </ObjectGrants>
     </user>
-    <user id="329" parent="1" name="root">
+    <user id="330" parent="1" name="root">
       <Host>%</Host>
       <ObjectGrants>ALL PRIVILEGES!
 </ObjectGrants>
     </user>
-    <user id="330" parent="1" name="root">
+    <user id="331" parent="1" name="root">
       <Host>localhost</Host>
       <ObjectGrants>ALL PRIVILEGES!
 </ObjectGrants>
     </user>
-    <table id="331" parent="3" name="autor">
+    <table id="332" parent="3" name="autor">
       <Collation>utf8_spanish_ci</Collation>
     </table>
-    <table id="332" parent="3" name="ejemplares">
+    <table id="333" parent="3" name="ejemplares">
       <Collation>utf8_spanish_ci</Collation>
     </table>
-    <table id="333" parent="3" name="libros">
+    <table id="334" parent="3" name="libros">
       <Collation>utf8_spanish_ci</Collation>
     </table>
-    <table id="334" parent="3" name="prestar">
+    <table id="335" parent="3" name="prestar">
       <Collation>utf8_spanish_ci</Collation>
     </table>
-    <table id="335" parent="3" name="usuarios">
+    <table id="336" parent="3" name="usuarios">
       <Collation>utf8_spanish_ci</Collation>
     </table>
-    <column id="336" parent="331" name="COD">
+    <column id="337" parent="332" name="COD">
       <Position>1</Position>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="337" parent="331" name="NOMBRE">
+    <column id="338" parent="332" name="NOMBRE">
       <Position>2</Position>
       <DataType>varchar(60)|0s</DataType>
     </column>
-    <key id="338" parent="331" name="PRIMARY">
+    <key id="339" parent="332" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>COD</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="339" parent="332" name="COD">
+    <column id="340" parent="333" name="COD">
       <Position>1</Position>
       <DataType>varchar(5)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="340" parent="332" name="PASILLO">
+    <column id="341" parent="333" name="PASILLO">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
     </column>
-    <column id="341" parent="332" name="ESTANTERIA">
+    <column id="342" parent="333" name="ESTANTERIA">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
     </column>
-    <column id="342" parent="332" name="ESTANTE">
+    <column id="343" parent="333" name="ESTANTE">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
     </column>
-    <column id="343" parent="332" name="CAJON">
+    <column id="344" parent="333" name="CAJON">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
     </column>
-    <column id="344" parent="332" name="CODLIB">
+    <column id="345" parent="333" name="CODLIB">
       <Position>6</Position>
       <DataType>varchar(5)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="345" parent="332" name="UK_LOC">
+    <index id="346" parent="333" name="UK_LOC">
       <ColNames>PASILLO
 ESTANTERIA
 ESTANTE
@@ -1103,144 +1108,144 @@ CAJON</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="346" parent="332" name="FK_EJEMPLAR_LIBRO">
+    <index id="347" parent="333" name="FK_EJEMPLAR_LIBRO">
       <ColNames>CODLIB</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="347" parent="332" name="PRIMARY">
+    <key id="348" parent="333" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>COD</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="348" parent="332" name="UK_LOC">
+    <key id="349" parent="333" name="UK_LOC">
       <ColNames>PASILLO
 ESTANTERIA
 ESTANTE
 CAJON</ColNames>
       <UnderlyingIndexName>UK_LOC</UnderlyingIndexName>
     </key>
-    <foreign-key id="349" parent="332" name="FK_EJEMPLAR_LIBRO">
+    <foreign-key id="350" parent="333" name="FK_EJEMPLAR_LIBRO">
       <ColNames>CODLIB</ColNames>
       <RefTableName>libros</RefTableName>
       <RefColNames>COD</RefColNames>
     </foreign-key>
-    <column id="350" parent="333" name="COD">
+    <column id="351" parent="334" name="COD">
       <Position>1</Position>
       <DataType>varchar(5)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="351" parent="333" name="ISBN">
+    <column id="352" parent="334" name="ISBN">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="352" parent="333" name="TITULO">
+    <column id="353" parent="334" name="TITULO">
       <Position>3</Position>
       <DataType>varchar(100)|0s</DataType>
     </column>
-    <column id="353" parent="333" name="PRECIO">
+    <column id="354" parent="334" name="PRECIO">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
     </column>
-    <column id="354" parent="333" name="IMAGEN">
+    <column id="355" parent="334" name="IMAGEN">
       <Position>5</Position>
       <DataType>varchar(100)|0s</DataType>
     </column>
-    <column id="355" parent="333" name="URL">
+    <column id="356" parent="334" name="URL">
       <Position>6</Position>
       <DataType>varchar(100)|0s</DataType>
     </column>
-    <column id="356" parent="333" name="COD_AUTOR">
+    <column id="357" parent="334" name="COD_AUTOR">
       <Position>7</Position>
       <DataType>varchar(10)|0s</DataType>
     </column>
-    <column id="357" parent="333" name="ACTIVO">
+    <column id="358" parent="334" name="ACTIVO">
       <Position>8</Position>
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <index id="358" parent="333" name="UK_ISBN_LIB">
+    <index id="359" parent="334" name="UK_ISBN_LIB">
       <ColNames>ISBN</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="359" parent="333" name="FK_LIBROS_AUTOR">
+    <index id="360" parent="334" name="FK_LIBROS_AUTOR">
       <ColNames>COD_AUTOR</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="360" parent="333" name="PRIMARY">
+    <key id="361" parent="334" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>COD</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="361" parent="333" name="UK_ISBN_LIB">
+    <key id="362" parent="334" name="UK_ISBN_LIB">
       <ColNames>ISBN</ColNames>
       <UnderlyingIndexName>UK_ISBN_LIB</UnderlyingIndexName>
     </key>
-    <foreign-key id="362" parent="333" name="FK_LIBROS_AUTOR">
+    <foreign-key id="363" parent="334" name="FK_LIBROS_AUTOR">
       <ColNames>COD_AUTOR</ColNames>
       <RefTableName>autor</RefTableName>
       <RefColNames>COD</RefColNames>
     </foreign-key>
-    <column id="363" parent="334" name="CODUSU">
+    <column id="364" parent="335" name="CODUSU">
       <Position>1</Position>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="364" parent="334" name="CODEJEM">
+    <column id="365" parent="335" name="CODEJEM">
       <Position>2</Position>
       <DataType>varchar(5)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="365" parent="334" name="FECHAPREST">
+    <column id="366" parent="335" name="FECHAPREST">
       <Position>3</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="366" parent="334" name="FECHADEV">
+    <column id="367" parent="335" name="FECHADEV">
       <Position>4</Position>
       <DataType>date|0s</DataType>
     </column>
-    <index id="367" parent="334" name="FK_PRESTAR_EJEMPLAR">
+    <index id="368" parent="335" name="FK_PRESTAR_EJEMPLAR">
       <ColNames>CODEJEM</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="368" parent="334" name="PRIMARY">
+    <key id="369" parent="335" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>CODUSU
 CODEJEM
 FECHAPREST</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="369" parent="334" name="FK_PRESTAR_USUARIO">
+    <foreign-key id="370" parent="335" name="FK_PRESTAR_USUARIO">
       <ColNames>CODUSU</ColNames>
       <RefTableName>usuarios</RefTableName>
       <RefColNames>COD</RefColNames>
     </foreign-key>
-    <foreign-key id="370" parent="334" name="FK_PRESTAR_EJEMPLAR">
+    <foreign-key id="371" parent="335" name="FK_PRESTAR_EJEMPLAR">
       <ColNames>CODEJEM</ColNames>
       <RefTableName>ejemplares</RefTableName>
       <RefColNames>COD</RefColNames>
     </foreign-key>
-    <column id="371" parent="335" name="COD">
+    <column id="372" parent="336" name="COD">
       <Position>1</Position>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="372" parent="335" name="NOMBRE">
+    <column id="373" parent="336" name="NOMBRE">
       <Position>2</Position>
       <DataType>varchar(60)|0s</DataType>
     </column>
-    <column id="373" parent="335" name="DIRECCION">
+    <column id="374" parent="336" name="DIRECCION">
       <Position>3</Position>
       <DataType>varchar(100)|0s</DataType>
     </column>
-    <column id="374" parent="335" name="TELEFONO">
+    <column id="375" parent="336" name="TELEFONO">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
     </column>
-    <key id="375" parent="335" name="PRIMARY">
+    <key id="376" parent="336" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>COD</ColNames>
       <Primary>1</Primary>
