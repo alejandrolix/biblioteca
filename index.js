@@ -12,8 +12,8 @@ app.use(bodyParser.json({
 function obtenerConexionBd() {
     let conexion = mysql.createConnection({
         host: 'localhost',
-        user: 'root',
-        password: '',
+        user: 'libreriaUser',
+        password: 'libreria',
         database: 'libreria'
     });
 
@@ -212,11 +212,10 @@ app.post('/libros', (req, res) => {
     var fileName =  libro.COD + "." + extension;
 
     try{
-        fs.writeFileSync(__dirname + "/public/images/" + fileName, imageBuffer, 'utf8');
-        libro.IMAGEN = "images/" + fileName;
+        fs.writeFileSync(__dirname + "/public/imagenes/" + fileName, imageBuffer, 'utf8');
+        libro.IMAGEN = fileName;
     }
-    catch (err){
-        console.log(err)
+    catch (err) {
         res.status(500)
        .send({
                 ok: false,

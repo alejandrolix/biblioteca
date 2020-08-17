@@ -1,6 +1,10 @@
 let btnNuevoLibro = document.getElementById('btnNuevoLibro');
 btnNuevoLibro.addEventListener('click', () => {
-    obtenerAutores();
+    let selectAutores = document.getElementById('autores');
+
+    if (selectAutores.options.length == 0) {
+        obtenerAutores();
+    }
 });
 
 function obtenerAutores() {
@@ -85,6 +89,7 @@ function crearLibro() {
                     })
                     .then(resultado => {
                         if (resultado.ok) {
+                            limpiarFormulario('nuevoLibro');
                             $('#nuevoLibro').modal('hide');
                             getLibros();
                         }
@@ -103,6 +108,15 @@ function getBase64(file) {
         reader.onload = () => resolve(reader.result);
         reader.onerror = error => reject(error);
     });
+}
+
+function limpiarFormulario(nombreFormulario) {
+    let formulario = document.getElementById(nombreFormulario);
+    let controles = formulario.getElementsByTagName('input');
+
+    for (let i = 0; i < controles.length; i++) {
+        controles[i].value = '';
+    }
 }
 
 window.addEventListener('load', () => {

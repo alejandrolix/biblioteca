@@ -20,23 +20,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25e7740e-a30d-4c4e-869e-e7bef4396e0e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/autores.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/imagenes/34.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1ba47b02-9226-40eb-a77a-ace46824429d.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1ba47b02-9226-40eb-a77a-ace46824429d/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/482b2e21-5007-4cf6-9a30-d77d12fa9408.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/482b2e21-5007-4cf6-9a30-d77d12fa9408/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/body-parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/body-parser/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/mime/.npmignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/mime/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/mime/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/mime/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/mime/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/mime/cli.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/mime/cli.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/mime/mime.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/mime/mime.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/mime/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/mime/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/mime/src/build.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/mime/src/test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/mime/types.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/libros.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/libros.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/libros.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/libros.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,8 +64,8 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="javascript.nodejs.core.library.configured.version" value="14.7.0" />
-    <property name="javascript.nodejs.core.library.typings.version" value="14.0.27" />
+    <property name="javascript.nodejs.core.library.configured.version" value="12.13.0" />
+    <property name="javascript.nodejs.core.library.typings.version" value="12.12.54" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -233,26 +227,26 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="548" y="179" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1597223923924" />
-    <state width="1039" height="203" key="GridCell.Tab.0.bottom" timestamp="1597659672818">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1899" height="274" key="GridCell.Tab.0.bottom" timestamp="1597672185889">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1039" height="203" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597659672818" />
-    <state width="1308" height="274" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1597475437903" />
-    <state width="1039" height="203" key="GridCell.Tab.0.center" timestamp="1597659672818">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1899" height="274" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1597672185889" />
+    <state width="1899" height="274" key="GridCell.Tab.0.center" timestamp="1597672185889">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1039" height="203" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1597659672818" />
-    <state width="1308" height="274" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1597475437903" />
-    <state width="1039" height="203" key="GridCell.Tab.0.left" timestamp="1597659672818">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1899" height="274" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1597672185889" />
+    <state width="1899" height="274" key="GridCell.Tab.0.left" timestamp="1597672185889">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1039" height="203" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1597659672818" />
-    <state width="1308" height="274" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1597475437903" />
-    <state width="1039" height="203" key="GridCell.Tab.0.right" timestamp="1597659672818">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1899" height="274" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1597672185889" />
+    <state width="1899" height="274" key="GridCell.Tab.0.right" timestamp="1597672185889">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1039" height="203" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1597659672818" />
-    <state width="1308" height="274" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1597475437903" />
+    <state width="1899" height="274" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1597672185889" />
     <state width="1515" height="252" key="GridCell.Tab.1.bottom" timestamp="1597226383855">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

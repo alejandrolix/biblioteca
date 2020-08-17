@@ -5,6 +5,7 @@ services:
     image: mariadb:10.5.4
     ports:
       - 3306:3306
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: manuscrito3po
       MYSQL_USER: libreriaUser
