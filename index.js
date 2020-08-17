@@ -225,6 +225,41 @@ app.get('/autores/totalLibros', (req, res) => {
     });
 });
 
+app.get('/autores/:id/libros', (req, res) => {
+    let sql = `select titulo, isbn, precio, imagen
+               from libros
+               where cod_autor = ?;`;
+
+    let codAutor = req.params.id;
+    let codigoRespuesta = 0;
+    let respuesta = null;
+
+    let conexion = obtenerConexionBd();
+    conexion.query(sql, codAutor, (error, resultado) => {
+        if (error) {
+            codigoRespuesta = 500;
+            respuesta = {
+                ok: false,
+                mensaje: error.message
+            };
+        }
+        else {
+            let libros = resultado;
+            codigoRespuesta = 200;
+            respuesta = {
+                ok: true,
+                mensaje: 'Libros obtenidos correctamente',
+                data: libros
+            };
+        }
+
+        conexion.end();
+
+        res.status(codigoRespuesta)
+           .send(respuesta);
+    });
+});
+
 app.post('/libros', (req, res) => {
     let sql = 'insert into libros set ?;';
 
