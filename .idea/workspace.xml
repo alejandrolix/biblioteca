@@ -21,6 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="25e7740e-a30d-4c4e-869e-e7bef4396e0e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/autores.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/autores.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/libros.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/libros.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
