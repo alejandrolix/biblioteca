@@ -1,3 +1,114 @@
+let btnNuevoLibro = document.getElementById('btnNuevoLibro');
+btnNuevoLibro.addEventListener('click', () => {
+    obtenerAutores();
+});
+
+function obtenerAutores() {
+    fetch('http://localhost:8080/autores')
+        .then(resultado => {
+            return resultado.json();
+        })
+        .then(resultado => {
+
+            if (resultado.ok) {
+                let autores = resultado.data;
+                mostrarAutores(autores);
+            }
+        })
+        .catch(() => {
+            alert('Ha habido un error al obtener los autores');
+        });
+}
+
+function mostrarAutores(autores) {
+    let selectAutores = document.getElementById('autores');
+
+    for (let i = 0; i < autores.length; i++) {
+        let autor = autores[i];
+
+        let option = document.createElement('option');
+        option.setAttribute('value', autor.cod);
+
+        let txtOption = document.createTextNode(autor.NOMBRE);
+
+        option.appendChild(txtOption);
+        selectAutores.appendChild(option);
+    }
+}
+
+let btnCrearLibro = document.getElementById('btnCrear');
+btnCrearLibro.addEventListener('click', () => {
+    crearLibro();
+});
+
+function crearLibro() {
+    let activo = document.getElementById('activo').checked;
+    let cod = document.getElementById('cod').value;
+    let titulo = document.getElementById('titulo').value;
+    let autores = document.getElementById('autores');
+
+    let codAutor = autores.options[autores.selectedIndex].value;
+    let isbn = document.getElementById('isbn').value;
+    let precio = document.getElementById('precio').value;
+    let url = document.getElementById('url').value;
+
+    if (url === '') {
+        url = null;
+    }
+
+    let libro = {
+      activo: activo,
+      cod: cod,
+      titulo: titulo,
+      autor: codAutor,
+      isbn: isbn,
+      precio: precio,
+      url: url
+    };
+
+    if (cod !== '' && titulo !== '' && isbn !== '' && precio !== '') {
+        let imagen = document.getElementById('imagenLibro');
+        let file = imagen.files[0];
+
+        getBase64(file)
+            .then(imagen => {
+                libro.imagen = imagen;
+                fetch('http://localhost:8080/libros', {
+                    method: 'POST',
+                    body: JSON.stringify(libro),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(resultado => {
+                        return resultado.json();
+                    })
+                    .then(resultado => {
+                        if (resultado.ok) {
+                            $('#nuevoLibro').modal('hide');
+                            getLibros();
+                        }
+                    })
+                    .catch(() => {
+                        alert('Ha habido un error al crear el libro');
+                    });
+            });
+    }
+}
+
+function getBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+}
+
+window.addEventListener('load', () => {
+    getLibros();
+});
+
 function getLibros() {
     fetch('http://localhost:8080/libros')
         .then((resultado) => {
@@ -13,10 +124,6 @@ function getLibros() {
             alert('Ha habido un error al obtener los libros');
         });
 }
-
-window.addEventListener('load', () => {
-    getLibros();
-});
 
 function mostrarLibros(libros) {
     let divLibros = document.getElementById('libros');
@@ -52,9 +159,9 @@ function mostrarLibros(libros) {
                 '                                            <button type="button" class="btnDetalles btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#verLibro">\n' +
                 '                                                <i class="fas fa-eye"></i>\n' +
                 '                                            </button>\n' +
-                '                                            <a href="formularioLibro.html" class="btn btn-sm btn-outline-secondary">\n' +
+                '                                            <button class="btnEditar btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#actualizarLibro">\n' +
                 '                                                <i class="fas fa-edit"></i>\n' +
-                '                                            </a>\n' +
+                '                                            </button>\n' +
                 '                                            <button class="btnEliminar btn btn-sm btn-outline-secondary">\n' +
                 '                                                <i class="fas fa-trash"></i>\n' +
                 '                                            </button>\n' +
@@ -82,6 +189,15 @@ function mostrarLibros(libros) {
     for (let i = 0; i < botonesEliminar.length; i++) {
         botonesEliminar[i].addEventListener('click', () => {
             eliminarLibro(idsLibros[i]);
+        });
+    }
+
+    let botonesEditar = document.querySelectorAll('.btnEditar');
+
+    for (let i = 0; i < botonesEditar.length; i++) {
+        botonesEditar[i].addEventListener('click', () => {
+            let idLibro = botonesEditar[i].parentNode.parentNode.parentNode.parentNode.parentNode.id;
+            mostrarFormEditarLibro(idLibro);
         });
     }
 }
@@ -183,4 +299,35 @@ function eliminarLibro(idLibro) {
             });
         }
     });
+}
+
+function mostrarFormEditarLibro(idLibro) {
+    // let autores = obtenerAutores();
+    // mostrarAutores(autores);
+
+    fetch('http://localhost:8080/libros/' + idLibro)
+        .then(resultado => {
+            return resultado.json();
+        })
+        .then(resultado => {
+            console.log(resultado)
+            if (resultado.ok) {
+                let libro = resultado.data;
+
+                let activo = document.getElementById('activoa');
+                activo.checked = libro.activo;
+
+                let codigo = document.getElementById('coda');
+                codigo.value = libro.cod;
+
+                let titulo = document.getElementById('tituloa');
+                titulo.value = libro.titulo;
+
+                let isbn = document.getElementById('isbna');
+                isbn.value = libro.isbn;
+            }
+        })
+        .catch(() => {
+            alert('Ha habido un error al obtener los datos del libro');
+        });
 }

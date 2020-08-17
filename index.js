@@ -1,14 +1,20 @@
 const express = require('express');
 const mysql = require('mysql');
+const bodyParser = require('body-parser');
+const mime = require('mime');
+const fs = require('fs');
 
 let app = express();
+app.use(bodyParser.json({
+    limit: '50mb'
+}));
 
 function obtenerConexionBd() {
     let conexion = mysql.createConnection({
         host: 'localhost',
         user: 'root',
         password: '',
-        database: 'biblioteca2'
+        database: 'libreria'
     });
 
     conexion.connect(error => {
@@ -20,7 +26,7 @@ function obtenerConexionBd() {
     return conexion;
 }
 
-// app.use('/', express.static(__dirname + '/public'));     Para crear un servidor web de páginas estáticas.
+app.use('/', express.static(__dirname + '/public'));     // Para crear un servidor web de páginas estáticas.
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -66,7 +72,7 @@ app.get('/libros', (req, res) => {
 
 app.get('/libros/:id', (req, res) => {
     let idLibro = req.params.id;
-    let sql = `select l.titulo, l.isbn, l.precio, l.imagen, a.nombre as autor 
+    let sql = `select l.cod, l.titulo, l.isbn, l.precio, l.imagen, l.activo, a.nombre as autor 
                from libros l 
                     left join autor a on a.cod = l.cod_autor 
                where l.cod = ?;`;
@@ -148,5 +154,114 @@ app.delete('/libros/:id', (req, res) => {
            .json(respuesta);
     });
 });
+
+app.get('/autores', (req, res) => {
+    let sql = `select cod, NOMBRE
+               from autor
+               order by NOMBRE;`;
+
+    let codigoRespuesta = 0;
+    let respuesta = null;
+
+    let conexion = obtenerConexionBd();
+    conexion.query(sql, (error, resultado) => {
+        if (error) {
+            codigoRespuesta = 500;
+            respuesta = {
+                ok: false,
+                mensaje: error.message
+            };
+        }
+        else {
+            let autores = resultado;
+            codigoRespuesta = 200;
+            respuesta = {
+                ok: true,
+                mensaje: 'Autores obtenidos correctamente',
+                data: autores
+            };
+        }
+
+        conexion.end();
+
+        res.status(codigoRespuesta)
+            .send(respuesta);
+    });
+});
+
+app.post('/libros', (req, res) => {
+    let sql = 'insert into libros set ?;';
+
+    let codigoRespuesta = 0;
+    let respuesta = null;
+    let libro = {
+      COD: req.body.cod,
+      ISBN: req.body.isbn,
+      TITULO: req.body.titulo,
+      PRECIO: req.body.precio,
+      URL: req.body.url,
+      COD_AUTOR: req.body.autor,
+      ACTIVO: req.body.activo,
+      IMAGEN: req.body.imagen
+    };
+
+    var decodedImg = decodeBase64Image(libro.IMAGEN);
+    var imageBuffer = decodedImg.data;
+    var type = decodedImg.type;
+    var extension = mime.getExtension(type);
+    var fileName =  libro.COD + "." + extension;
+
+    try{
+        fs.writeFileSync(__dirname + "/public/images/" + fileName, imageBuffer, 'utf8');
+        libro.IMAGEN = "images/" + fileName;
+    }
+    catch (err){
+        console.log(err)
+        res.status(500)
+       .send({
+                ok: false,
+                mensaje: "Error guardando el fichero de imagen"
+        });
+    }
+
+    let conexion = obtenerConexionBd();
+    conexion.query(sql, libro, (error, resultado) => {
+        if (error) {
+            codigoRespuesta = 500;
+            respuesta = {
+                ok: false,
+                mensaje: error.message
+            };
+        }
+        else {
+            if (resultado.affectedRows >= 1) {
+                codigoRespuesta = 201;
+                respuesta = {
+                    ok: true,
+                    mensaje: 'Libro creado correctamente'
+                };
+            }
+        }
+
+        conexion.end();
+
+        res.status(codigoRespuesta)
+           .send(respuesta);
+    });
+});
+
+function decodeBase64Image(dataString) {
+    let matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+    let response = {};
+
+    if (matches.length !== 3) {
+      return new Error('Invalid input string');
+    }
+
+    response.type = matches[1];
+    response.data = new Buffer(matches[2], 'base64');
+
+    return response;
+}
 
 app.listen(8080);

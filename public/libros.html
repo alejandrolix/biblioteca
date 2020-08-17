@@ -13,7 +13,8 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Mi Librería</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -25,8 +26,12 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="libros.html">Libros</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="autores.html">Autores</a>
+                    </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
                             Dropdown
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -43,11 +48,180 @@
         <main role="main">
             <div class="album py-5 bg-light">
                 <div class="container">
+                    <button type="button" class="btn btn-success mb-5" id="btnNuevoLibro" data-toggle="modal" data-target="#nuevoLibro">Nuevo Libro</button>
                     <div class="row" id="libros"></div>
                 </div>
             </div>
 
-            <!-- Modal -->
+            <!-- Modal Nuevo Libro -->
+            <div class="modal fade" id="nuevoLibro" tabindex="-1" aria-labelledby="nuevoLibro" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Nuevo Libro</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="#" method="post">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <div class="form-group form-check">
+                                                <input type="checkbox" class="form-check-input" id="activo">
+                                                <label class="form-check-label" for="activo">Activo</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="cod">Código</label>
+                                            <input type="text" class="form-control" id="cod" aria-describedby="codHelp" required>
+                                            <small id="codHelp" class="form-text text-muted">Indique el código del libro en este campo.</small>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="titulo">Título</label>
+                                            <input type="text" class="form-control" id="titulo" aria-describedby="tituloHelp" required>
+                                            <small id="tituloHelp" class="form-text text-muted">Indique el título del libro en este campo.</small>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="autores">Autor</label>
+                                            <select class="form-control" id="autores" aria-describedby="autoresHelp"></select>
+                                            <small id="autoresHelp" class="form-text text-muted">Indique el autor del libro en este campo.</small>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="isbn">ISBN</label>
+                                            <input type="text" class="form-control" id="isbn" aria-describedby="isbnHelp" required>
+                                            <small id="isbnHelp" class="form-text text-muted">Indique el ISBN del libro en este campo.</small>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="precio">Precio</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control" id="precio" aria-describedby="precioHelp" required>
+                                                <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-euro-sign"></i>
+                                        </span>
+                                                </div>
+                                            </div>
+                                            <small id="precioHelp" class="form-text text-muted">Indique el precio del libro en este campo.</small>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="url">URL</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control" id="url" aria-describedby="urlHelp">
+                                                <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-link"></i>
+                                        </span>
+                                                </div>
+                                            </div>
+                                            <small id="urlHelp" class="form-text text-muted">Indique la URL del libro en este campo.</small>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="imagen">Imagen</label>
+                                            <input type="file" class="form-control-file" id="imagenLibro">
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <button type="button" class="btn btn-primary" id="btnCrear">Crear</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Actualizar Libro -->
+            <div class="modal fade" id="actualizarLibro" tabindex="-1" aria-labelledby="actualizarLibro" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Actualizar Libro</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="#" method="post">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <div class="form-group form-check">
+                                                <input type="checkbox" class="form-check-input" id="activoa">
+                                                <label class="form-check-label" for="activoa">Activo</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="coda">Código</label>
+                                            <input type="text" class="form-control" id="coda" aria-describedby="codHelp" required>
+                                            <small id="codaHelp" class="form-text text-muted">Indique el código del libro en este campo.</small>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="tituloa">Título</label>
+                                            <input type="text" class="form-control" id="tituloa" aria-describedby="tituloHelp" required>
+                                            <small id="tituloaHelp" class="form-text text-muted">Indique el título del libro en este campo.</small>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="autoresa">Autor</label>
+                                            <select class="form-control" id="autoresa" aria-describedby="autoresHelp"></select>
+                                            <small id="autoresaHelp" class="form-text text-muted">Indique el autor del libro en este campo.</small>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="isbna">ISBN</label>
+                                            <input type="text" class="form-control" id="isbna" aria-describedby="isbnHelp" required>
+                                            <small id="isbnaHelp" class="form-text text-muted">Indique el ISBN del libro en este campo.</small>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="precioa">Precio</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control" id="precioa" aria-describedby="precioHelp" required>
+                                                <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-euro-sign"></i>
+                                        </span>
+                                                </div>
+                                            </div>
+                                            <small id="precioaHelp" class="form-text text-muted">Indique el precio del libro en este campo.</small>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="urla">URL</label>
+                                            <div class="input-group input-group-sm">
+                                                <input type="text" class="form-control" id="urla" aria-describedby="urlHelp">
+                                                <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-link"></i>
+                                        </span>
+                                                </div>
+                                            </div>
+                                            <small id="urlaHelp" class="form-text text-muted">Indique la URL del libro en este campo.</small>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="imagenaLibro">Imagen</label>
+                                            <input type="file" class="form-control-file" id="imagenaLibro">
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <button type="button" class="btn btn-primary" id="btnEditar">Editar</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Información Libro -->
             <div class="modal fade" id="verLibro" tabindex="-1" aria-labelledby="verLibro" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
