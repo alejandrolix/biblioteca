@@ -250,7 +250,7 @@ function mostrarInfoLibro(idLibro) {
                     '                                    <div class="col-md-4">\n' +
                     '                                        <p>Autor</p>\n' +
                     '                                    </div>\n' +
-                    '                                    <div class="col-md-8">\n'
+                    '                                    <div class="col-md-8">\n';
 
                 if (libro.autor == null) {
                     cadenaLibro = cadenaLibro + '<p>Anónimo</p>\n';
