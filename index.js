@@ -189,6 +189,42 @@ app.get('/autores', (req, res) => {
     });
 });
 
+app.get('/autores/totalLibros', (req, res) => {
+    let sql = `select a.cod, a.nombre, count(l.cod) as numLibros
+               from autor a
+                    inner join libros l on a.COD = l.COD_AUTOR
+               group by a.cod, a.NOMBRE
+               order by a.NOMBRE;`;
+
+    let codigoRespuesta = 0;
+    let respuesta = null;
+
+    let conexion = obtenerConexionBd();
+    conexion.query(sql, (error, resultado) => {
+        if (error) {
+            codigoRespuesta = 500;
+            respuesta = {
+                ok: false,
+                mensaje: error.message
+            };
+        }
+        else {
+            let autores = resultado;
+            codigoRespuesta = 200;
+            respuesta = {
+                ok: true,
+                mensaje: 'Autores obtenidos correctamente',
+                data: autores
+            };
+        }
+
+        conexion.end();
+
+        res.status(codigoRespuesta)
+           .send(respuesta);
+    });
+});
+
 app.post('/libros', (req, res) => {
     let sql = 'insert into libros set ?;';
 
