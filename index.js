@@ -6,9 +6,9 @@ let app = express();
 function obtenerConexionBd() {
     let conexion = mysql.createConnection({
         host: 'localhost',
-        user: 'libreriaUser',
-        password: 'libreria',
-        database: 'libreria'
+        user: 'root',
+        password: '',
+        database: 'biblioteca2'
     });
 
     conexion.connect(error => {
@@ -34,6 +34,7 @@ app.get('/libros', (req, res) => {
                from libros l 
                     left join autor a on a.cod = l.cod_autor
                order by l.titulo;`;
+
     let codigoRespuesta = 0;
     let respuesta = null;
 
@@ -69,6 +70,7 @@ app.get('/libros/:id', (req, res) => {
                from libros l 
                     left join autor a on a.cod = l.cod_autor 
                where l.cod = ?;`;
+
     let codigoRespuesta = 0;
     let respuesta = null;
 

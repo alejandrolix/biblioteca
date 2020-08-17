@@ -157,17 +157,30 @@ function mostrarInfoLibro(idLibro) {
 }
 
 function eliminarLibro(idLibro) {
-    fetch('http://localhost:8080/libros/' + idLibro, {
-        method: 'DELETE'
-    })
-    .then((resultado) => {
-        return resultado.json();
-    })
-    .then((resultado) => {
+    Swal.fire({
+        title: '¿Está seguro que quiere eliminar el libro?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
 
-        if (resultado.ok) {
-            let libro = document.getElementById(idLibro);
-            libro.remove();
+        if (result.value) {
+            fetch('http://localhost:8080/libros/' + idLibro, {
+                method: 'DELETE'
+            })
+            .then((resultado) => {
+                return resultado.json();
+            })
+            .then((resultado) => {
+                toastr.success('Libro eliminado', 'Operación eliminada correctamente!!');
+
+                if (resultado.ok) {
+                    let libro = document.getElementById(idLibro);
+                    libro.remove();
+                }
+            });
         }
     });
 }
