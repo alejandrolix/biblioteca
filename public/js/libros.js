@@ -3,7 +3,8 @@ btnNuevoLibro.addEventListener('click', () => {
     let selectAutores = document.getElementById('autores');
 
     if (selectAutores.options.length == 0) {
-        mostrarAutores('autores');
+        mostrarAutores('autores')
+            .then(() => mostrarFormularioCrearEditarLibro(0));
     }
 });
 
@@ -53,9 +54,6 @@ function mostrarAutores(nombreSelect) {
     return autores;
 }
 
-let btnCrearLibro = document.getElementById('btnCrear');
-btnCrearLibro.addEventListener('click', () => crearLibro());
-
 function crearLibro() {
     let activo = document.getElementById('activo').checked;
     let cod = document.getElementById('cod').value;
@@ -104,6 +102,7 @@ function crearLibro() {
                         if (resultado.ok) {
                             limpiarFormulario('nuevoLibro');
                             $('#nuevoLibro').modal('hide');
+
                             getLibros();
                         }
                     })
@@ -179,7 +178,7 @@ function mostrarLibros(libros) {
                 '                                            <button type="button" class="btnDetalles btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#verLibro">\n' +
                 '                                                <i class="fas fa-eye"></i>\n' +
                 '                                            </button>\n' +
-                '                                            <button class="btnEditar btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#actualizarLibro">\n' +
+                '                                            <button class="btnEditar btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#formularioLibro">\n' +
                 '                                                <i class="fas fa-edit"></i>\n' +
                 '                                            </button>\n' +
                 '                                            <button class="btnEliminar btn btn-sm btn-outline-secondary">\n' +
@@ -213,7 +212,8 @@ function mostrarLibros(libros) {
     for (let i = 0; i < botonesEditar.length; i++) {
         botonesEditar[i].addEventListener('click', () => {
             let idLibro = botonesEditar[i].parentNode.parentNode.parentNode.parentNode.parentNode.id;
-            mostrarFormEditarLibro(idLibro);
+
+            mostrarFormularioCrearEditarLibro(idLibro);
         });
     }
 }
@@ -311,63 +311,84 @@ function eliminarLibro(idLibro) {
     });
 }
 
-function mostrarFormEditarLibro(idLibro) {
-    let btnEditar = document.getElementById('btnEditar');
-    btnEditar.addEventListener('click', () => editarLibro());
+function mostrarFormularioCrearEditarLibro(idLibro) {
+    let tituloModal = document.getElementById('tituloModal');
+    let btnAccion = document.getElementById('btnAccion');
+    let txtBtnAccion = null;
 
-    fetch('http://localhost:8080/libros/' + idLibro)
-        .then(resultado => resultado.json())
-        .then(resultado => {
+    if (idLibro == 0) {
+        tituloModal.innerText = 'Nuevo Libro';
 
-            if (resultado.ok) {
-                mostrarAutores('autoresa')
-                    .then(() => {
-                        let libro = resultado.data;
+        if (btnAccion.childNodes.length == 0) {
+            btnAccion.appendChild(txtBtnAccion);
+        }
 
-                        let tituloLibroEditar = document.getElementById('tituloLibroEditar');
-                        tituloLibroEditar.innerText = 'Editar libro ' + libro.titulo;
+        txtBtnAccion = document.createTextNode('Guardar');
+        btnAccion.addEventListener('click', () => crearLibro());
+    }
+    else {
+        fetch('http://localhost:8080/libros/' + idLibro)
+            .then(resultado => resultado.json())
+            .then(resultado => {
 
-                        let activo = document.getElementById('activoa');
-                        activo.checked = libro.activo;
+                if (resultado.ok) {
+                    mostrarAutores('autores')
+                        .then(() => {
+                            txtBtnAccion = document.createTextNode('Editar');
 
-                        let codigo = document.getElementById('coda');
-                        codigo.value = libro.cod;
-
-                        let titulo = document.getElementById('tituloa');
-                        titulo.value = libro.titulo;
-
-                        let autores = document.getElementById('autoresa');
-
-                        for (let i = 0; i < autores.options.length; i++) {
-                            if (autores.options[i].text === libro.autor) {
-                                autores.options[i].selected = true;
+                            if (btnAccion.childNodes.length == 0) {
+                                btnAccion.appendChild(txtBtnAccion);
                             }
-                        }
 
-                        let isbn = document.getElementById('isbna');
-                        isbn.value = libro.isbn;
+                            btnAccion.addEventListener('click', () => editarLibro());
 
-                        let precio = document.getElementById('precioa');
-                        precio.value = libro.precio;
+                            let libro = resultado.data;
 
-                        let url = document.getElementById('urla');
-                        url.value = libro.url;
-                    })
-                    .catch(() => alert('Ha habido un error al mostrar el desplegable de autores'));
-            }
-        })
-        .catch(() => alert('Ha habido un error al obtener los datos del libro'));
+                            tituloModal.innerText = 'Editar libro ' + libro.titulo;
+
+                            let activo = document.getElementById('activo');
+                            activo.checked = libro.activo;
+
+                            let codigo = document.getElementById('cod');
+                            codigo.value = libro.cod;
+                            codigo.disabled = true;
+
+                            let titulo = document.getElementById('titulo');
+                            titulo.value = libro.titulo;
+
+                            let autores = document.getElementById('autores');
+
+                            for (let i = 0; i < autores.options.length; i++) {
+                                if (autores.options[i].text === libro.autor) {
+                                    autores.options[i].selected = true;
+                                }
+                            }
+
+                            let isbn = document.getElementById('isbn');
+                            isbn.value = libro.isbn;
+
+                            let precio = document.getElementById('precio');
+                            precio.value = libro.precio;
+
+                            let url = document.getElementById('url');
+                            url.value = libro.url;
+                        })
+                        .catch(() => alert('Ha habido un error al mostrar el desplegable de autores'));
+                }
+            })
+            .catch(() => alert('Ha habido un error al obtener los datos del libro'));
+    }
 }
 
 function editarLibro() {
-    let activo = document.getElementById('activoa');
-    let codigo = document.getElementById('coda');
-    let titulo = document.getElementById('tituloa');
-    let autores = document.getElementById('autoresa');
-    let isbn = document.getElementById('isbna');
-    let precio = document.getElementById('precioa');
-    let url = document.getElementById('urla');
-    let imagen = document.getElementById('imagenaLibro');
+    let activo = document.getElementById('activo');
+    let codigo = document.getElementById('cod');
+    let titulo = document.getElementById('titulo');
+    let autores = document.getElementById('autores');
+    let isbn = document.getElementById('isbn');
+    let precio = document.getElementById('precio');
+    let url = document.getElementById('url');
+    let imagen = document.getElementById('imagenLibro');
 
     let libroEditar = {
         activo: activo.checked,
