@@ -1,8 +1,13 @@
 let btnNuevoLibro = document.getElementById('btnNuevoLibro');
 btnNuevoLibro.addEventListener('click', () => {
     let selectAutores = document.getElementById('autores');
+    let options = selectAutores.children;
 
-    if (selectAutores.options.length == 0) {
+    if (options.length == 0) {
+        for (let i = 0; i < options.length; i++) {
+            options[i].remove();
+        }
+
         obtenerAutores();
     }
 });
