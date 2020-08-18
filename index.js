@@ -254,6 +254,15 @@ app.get('/autores/:id/libros', (req, res) => {
         }
         else {
             let libros = resultado;
+
+            for (let i = 0; i < libros.length;  i++) {
+                let libro = libros[i];
+
+                if (!fs.existsSync('public/imagenes/' + libro.imagen)) {
+                    libro.imagen = 'noDisponible.png';
+                }
+            }
+
             codigoRespuesta = 200;
             respuesta = {
                 ok: true,
