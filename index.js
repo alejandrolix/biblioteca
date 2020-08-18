@@ -81,7 +81,7 @@ app.get('/libros', (req, res) => {
 
 app.get('/libros/:id', (req, res) => {
     let idLibro = req.params.id;
-    let sql = `select l.cod, l.titulo, l.isbn, l.precio, l.imagen, l.activo, a.nombre as autor 
+    let sql = `select l.cod, l.titulo, l.isbn, l.precio, l.imagen, l.url, l.activo, a.nombre as autor 
                from libros l 
                     left join autor a on a.cod = l.cod_autor 
                where l.cod = ?;`;
@@ -294,22 +294,16 @@ app.post('/libros', (req, res) => {
       IMAGEN: req.body.imagen
     };
 
-    var decodedImg = decodeBase64Image(libro.IMAGEN);
-    var imageBuffer = decodedImg.data;
-    var type = decodedImg.type;
-    var extension = mime.getExtension(type);
-    var fileName =  libro.COD + "." + extension;
+    if (libro.IMAGEN.length >= 1) {
+        let estaGuardada = guardarImagenLibro(libro);
 
-    try{
-        fs.writeFileSync(__dirname + "/public/imagenes/" + fileName, imageBuffer, 'utf8');
-        libro.IMAGEN = fileName;
-    }
-    catch (err) {
-        res.status(500)
-       .send({
-                ok: false,
-                mensaje: "Error guardando el fichero de imagen"
-        });
+        if (!estaGuardada) {
+            res.status(500)
+                .send({
+                    ok: false,
+                    mensaje: "Error guardando el fichero de imagen"
+                });
+        }
     }
 
     let conexion = obtenerConexionBd();
@@ -337,6 +331,79 @@ app.post('/libros', (req, res) => {
            .send(respuesta);
     });
 });
+
+app.put('/libros/:id', (req, res) => {
+    let sql = `update libros set isbn = ?, titulo = ?, precio = ?, imagen = ?, url = ?, activo = ? 
+               where cod = ?;`;
+
+    let codigoRespuesta = 0;
+    let respuesta = null;
+    let libro = {
+        COD: req.params.id,
+        ISBN: req.body.isbn,
+        TITULO: req.body.titulo,
+        PRECIO: req.body.precio,
+        URL: req.body.url,
+        COD_AUTOR: req.body.autor,
+        ACTIVO: req.body.activo,
+        IMAGEN: req.body.imagen
+    };
+
+    if (libro.IMAGEN.length >= 1) {
+        let estaGuardada = guardarImagenLibro(libro);
+
+        if (!estaGuardada) {
+            res.status(500)
+               .send({
+                    ok: false,
+                    mensaje: "Error guardando el fichero de imagen"
+                });
+        }
+    }
+
+    let conexion = obtenerConexionBd();
+    conexion.query(sql, [libro.ISBN, libro.TITULO, libro.PRECIO, libro.IMAGEN, libro.URL, libro.ACTIVO, libro.COD], (error, resultado) => {
+        if (error) {
+            codigoRespuesta = 500;
+            respuesta = {
+                ok: false,
+                mensaje: error.message
+            };
+        }
+        else {
+            if (resultado.changedRows >= 1) {
+                codigoRespuesta = 200;
+                respuesta = {
+                    ok: true,
+                    mensaje: 'Libro actualizado correctamente'
+                };
+            }
+        }
+
+        conexion.end();
+
+        res.status(codigoRespuesta)
+           .send(respuesta);
+    });
+});
+
+function guardarImagenLibro(libro) {
+    var decodedImg = decodeBase64Image(libro.IMAGEN);
+    var imageBuffer = decodedImg.data;
+    var type = decodedImg.type;
+    var extension = mime.getExtension(type);
+    var fileName =  libro.COD + "." + extension;
+
+    try {
+        fs.writeFileSync(__dirname + "/public/imagenes/" + fileName, imageBuffer, 'utf8');
+        libro.IMAGEN = fileName;
+
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
+}
 
 function decodeBase64Image(dataString) {
     let matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);

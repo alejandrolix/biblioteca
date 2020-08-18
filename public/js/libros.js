@@ -8,41 +8,42 @@ btnNuevoLibro.addEventListener('click', () => {
             options[i].remove();
         }
 
-        obtenerAutores();
+        mostrarAutores('autores');
     }
 });
 
-function obtenerAutores() {
-    fetch('http://localhost:8080/autores')
-        .then(resultado => {
-            return resultado.json();
-        })
-        .then(resultado => {
+function mostrarAutores(nombreSelect) {
+    return new Promise((resolve, reject) => {
+        fetch('http://localhost:8080/autores')
+            .then(resultado => {
+                return resultado.json();
+            })
+            .then(resultado => {
 
-            if (resultado.ok) {
-                let autores = resultado.data;
-                mostrarAutores(autores);
-            }
-        })
-        .catch(() => {
-            alert('Ha habido un error al obtener los autores');
-        });
-}
+                if (resultado.ok) {
+                    let autores = resultado.data;
+                    let selectAutores = document.getElementById(nombreSelect);
 
-function mostrarAutores(autores) {
-    let selectAutores = document.getElementById('autores');
+                    for (let i = 0; i < autores.length; i++) {
+                        let autor = autores[i];
 
-    for (let i = 0; i < autores.length; i++) {
-        let autor = autores[i];
+                        let option = document.createElement('option');
+                        option.setAttribute('value', autor.cod);
 
-        let option = document.createElement('option');
-        option.setAttribute('value', autor.cod);
+                        let txtOption = document.createTextNode(autor.NOMBRE);
 
-        let txtOption = document.createTextNode(autor.NOMBRE);
+                        option.appendChild(txtOption);
+                        selectAutores.appendChild(option);
+                    }
 
-        option.appendChild(txtOption);
-        selectAutores.appendChild(option);
-    }
+                    return resolve();
+                }
+            })
+            .catch(() => {
+                alert('Ha habido un error al obtener los autores');
+                return reject();
+            });
+    });
 }
 
 let btnCrearLibro = document.getElementById('btnCrear');
@@ -321,32 +322,109 @@ function eliminarLibro(idLibro) {
 }
 
 function mostrarFormEditarLibro(idLibro) {
-    // let autores = obtenerAutores();
-    // mostrarAutores(autores);
+    let btnEditar = document.getElementById('btnEditar');
+    btnEditar.addEventListener('click', () => {
+        editarLibro();
+    });
 
     fetch('http://localhost:8080/libros/' + idLibro)
         .then(resultado => {
             return resultado.json();
         })
         .then(resultado => {
-            console.log(resultado)
+
             if (resultado.ok) {
-                let libro = resultado.data;
+                mostrarAutores('autoresa')
+                    .then(() => {
+                        let libro = resultado.data;
 
-                let activo = document.getElementById('activoa');
-                activo.checked = libro.activo;
+                        let tituloLibroEditar = document.getElementById('tituloLibroEditar');
+                        tituloLibroEditar.innerText = 'Editar libro ' + libro.titulo;
 
-                let codigo = document.getElementById('coda');
-                codigo.value = libro.cod;
+                        let activo = document.getElementById('activoa');
+                        activo.checked = libro.activo;
 
-                let titulo = document.getElementById('tituloa');
-                titulo.value = libro.titulo;
+                        let codigo = document.getElementById('coda');
+                        codigo.value = libro.cod;
 
-                let isbn = document.getElementById('isbna');
-                isbn.value = libro.isbn;
+                        let titulo = document.getElementById('tituloa');
+                        titulo.value = libro.titulo;
+
+                        let autores = document.getElementById('autoresa');
+
+                        for (let i = 0; i < autores.options.length; i++) {
+                            if (autores.options[i].text === libro.autor) {
+                                autores.options[i].selected = true;
+                            }
+                        }
+
+                        let isbn = document.getElementById('isbna');
+                        isbn.value = libro.isbn;
+
+                        let precio = document.getElementById('precioa');
+                        precio.value = libro.precio;
+
+                        let url = document.getElementById('urla');
+                        url.value = libro.url;
+                    })
+                    .catch(() => {
+                        alert('Ha habido un error al mostrar el desplegable de autores');
+                    });
             }
         })
         .catch(() => {
             alert('Ha habido un error al obtener los datos del libro');
+        });
+}
+
+function editarLibro() {
+    let activo = document.getElementById('activoa');
+    let codigo = document.getElementById('coda');
+    let titulo = document.getElementById('tituloa');
+    let autores = document.getElementById('autoresa');
+    let isbn = document.getElementById('isbna');
+    let precio = document.getElementById('precioa');
+    let url = document.getElementById('urla');
+    let imagen = document.getElementById('imagenaLibro');
+
+    let libroEditar = {
+        activo: activo.checked,
+        codigo: codigo.value,
+        titulo: titulo.value,
+        autor: autores.value,
+        isbn: isbn.value,
+        precio: precio.value,
+        url: url.value
+    };
+
+    let file = imagen.files[0];
+
+    getBase64(file)
+        .then(imagen => {
+            libroEditar.imagen = imagen;
+
+            fetch('http://localhost:8080/libros/' + libroEditar.codigo, {
+                method: 'PUT',
+                body: JSON.stringify(libroEditar),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(resultado => {
+                    return resultado.json();
+                })
+                .then(resultado => {
+
+                    if (resultado.ok) {
+                        limpiarFormulario('actualizarLibro');
+                        $('#actualizarLibro').modal('hide');
+                        toastr.success('Se ha actualizado el libro correctamente', 'Libro actualizado');
+
+                        getLibros();
+                    }
+                })
+                .catch(() => {
+                    alert('Ha habido un error al modificar los datos del libro');
+                });
         });
 }
