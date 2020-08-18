@@ -1,13 +1,8 @@
 let btnNuevoLibro = document.getElementById('btnNuevoLibro');
 btnNuevoLibro.addEventListener('click', () => {
     let selectAutores = document.getElementById('autores');
-    let options = selectAutores.children;
 
-    if (options.length == 0) {
-        for (let i = 0; i < options.length; i++) {
-            options[i].remove();
-        }
-
+    if (selectAutores.options.length == 0) {
         mostrarAutores('autores');
     }
 });
@@ -22,6 +17,17 @@ function mostrarAutores(nombreSelect) {
                 if (resultado.ok) {
                     let autores = resultado.data;
                     let selectAutores = document.getElementById(nombreSelect);
+
+                    if (selectAutores.options.length >= 1) {
+                        let numOptions = selectAutores.options.length;
+
+                        while (numOptions >= 1) {
+                            let ultimaPosicion = selectAutores.options.length - 1;
+
+                            selectAutores.options[ultimaPosicion].remove();
+                            numOptions = selectAutores.options.length;
+                        }
+                    }
 
                     for (let i = 0; i < autores.length; i++) {
                         let autor = autores[i];
