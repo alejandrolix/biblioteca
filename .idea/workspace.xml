@@ -20,9 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25e7740e-a30d-4c4e-869e-e7bef4396e0e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/imagenes/noDisponible.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/libros.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/libros.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +96,7 @@
       <workItem from="1597432162423" duration="3691000" />
       <workItem from="1597472376719" duration="3406000" />
       <workItem from="1597482065262" duration="1989000" />
-      <workItem from="1597732443247" duration="1129000" />
+      <workItem from="1597732443247" duration="1818000" />
     </task>
     <task id="LOCAL-00001" summary="Guardar el precio del libro en una variable y mostrarlo">
       <created>1597301012565</created>
@@ -169,7 +168,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597673828825</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Añadido mostrar imagen no disponible si no existe la imagen del libro">
+      <created>1597733646175</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1597733646175</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -203,7 +209,8 @@
     <MESSAGE value="Cambiado objeto XMLHttpRequest por la función &quot;fetch&quot; en el ejercicio de las divisas" />
     <MESSAGE value="Cambiado tamaño imagen del Quijote y eliminada clase &quot;mb-4&quot; a la imagen que muestra los datos del libro" />
     <MESSAGE value="Eliminado estilos css de &quot;estilosLibros&quot; que no se usan" />
-    <option name="LAST_COMMIT_MESSAGE" value="Eliminado estilos css de &quot;estilosLibros&quot; que no se usan" />
+    <MESSAGE value="Añadido mostrar imagen no disponible si no existe la imagen del libro" />
+    <option name="LAST_COMMIT_MESSAGE" value="Añadido mostrar imagen no disponible si no existe la imagen del libro" />
   </component>
   <component name="WindowStateProjectService">
     <state x="436" y="181" width="1089" height="713" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597675615677">
@@ -322,10 +329,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="479" y="11" width="578" height="801" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1597391177738" />
-    <state x="539" y="183" width="840" height="856" key="search.everywhere.popup" timestamp="1597678729058">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1597734173995">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1597652957250" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1597734173995" />
     <state x="539" y="183" width="840" height="856" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1597678729058" />
   </component>
 </project>

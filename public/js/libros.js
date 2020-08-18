@@ -157,7 +157,7 @@ function mostrarLibros(libros) {
 
             cadenaLibros = cadenaLibros + '<div class="col-md-4" id="' + libro.cod + '">\n' +
                 '                            <div class="card mb-4 shadow-sm">\n' +
-                '                                <img src="imagenes/' + libro.imagen + '" class="card-img-top" alt="Segway">\n' +
+                '                                <img src="imagenes/' + libro.imagen + '" class="card-img-top" alt="' + libro.titulo + '">\n' +
                 '                                <div class="card-body">\n' +
                 '                                    <p class="card-text">' + libro.titulo + '</p>\n';
 
