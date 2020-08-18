@@ -12,8 +12,8 @@ app.use(bodyParser.json({
 function obtenerConexionBd() {
     let conexion = mysql.createConnection({
         host: 'localhost',
-        user: 'root',
-        password: '',
+        user: 'libreriaUser',
+        password: 'libreria',
         database: 'libreria'
     });
 
