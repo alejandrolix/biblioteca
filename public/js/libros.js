@@ -13,7 +13,8 @@ btnNuevoLibro.addEventListener('click', () => {
 });
 
 function mostrarAutores(nombreSelect) {
-    return new Promise((resolve, reject) => {
+    let autores = new Promise((resolve, reject) => {
+
         fetch('http://localhost:8080/autores')
             .then(resultado => resultado.json())
             .then(resultado => {
@@ -42,6 +43,8 @@ function mostrarAutores(nombreSelect) {
                 return reject();
             });
     });
+
+    return autores;
 }
 
 let btnCrearLibro = document.getElementById('btnCrear');
