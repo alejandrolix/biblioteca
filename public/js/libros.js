@@ -15,9 +15,7 @@ btnNuevoLibro.addEventListener('click', () => {
 function mostrarAutores(nombreSelect) {
     return new Promise((resolve, reject) => {
         fetch('http://localhost:8080/autores')
-            .then(resultado => {
-                return resultado.json();
-            })
+            .then(resultado => resultado.json())
             .then(resultado => {
 
                 if (resultado.ok) {
@@ -47,9 +45,7 @@ function mostrarAutores(nombreSelect) {
 }
 
 let btnCrearLibro = document.getElementById('btnCrear');
-btnCrearLibro.addEventListener('click', () => {
-    crearLibro();
-});
+btnCrearLibro.addEventListener('click', () => crearLibro());
 
 function crearLibro() {
     let activo = document.getElementById('activo').checked;
@@ -83,6 +79,7 @@ function crearLibro() {
         getBase64(file)
             .then(imagen => {
                 libro.imagen = imagen;
+
                 fetch('http://localhost:8080/libros', {
                     method: 'POST',
                     body: JSON.stringify(libro),
@@ -94,15 +91,14 @@ function crearLibro() {
                         return resultado.json();
                     })
                     .then(resultado => {
+
                         if (resultado.ok) {
                             limpiarFormulario('nuevoLibro');
                             $('#nuevoLibro').modal('hide');
                             getLibros();
                         }
                     })
-                    .catch(() => {
-                        alert('Ha habido un error al crear el libro');
-                    });
+                    .catch(() => alert('Ha habido un error al crear el libro'));
             });
     }
 }
@@ -125,24 +121,19 @@ function limpiarFormulario(nombreFormulario) {
     }
 }
 
-window.addEventListener('load', () => {
-    getLibros();
-});
+window.addEventListener('load', () => getLibros());
 
 function getLibros() {
     fetch('http://localhost:8080/libros')
-        .then((resultado) => {
-            return resultado.json();
-        })
-        .then((resultado) => {
+        .then(resultado => resultado.json())
+        .then(resultado => {
+
             if (resultado.ok) {
                 let libros = resultado.data;
                 mostrarLibros(libros);
             }
         })
-        .catch(() => {
-            alert('Ha habido un error al obtener los libros');
-        });
+        .catch(() => alert('Ha habido un error al obtener los libros'));
 }
 
 function mostrarLibros(libros) {
@@ -199,17 +190,13 @@ function mostrarLibros(libros) {
     let botonesDetalles = document.querySelectorAll('.btnDetalles');
 
     for (let i = 0; i < botonesDetalles.length; i++) {
-        botonesDetalles[i].addEventListener('click', () => {
-            mostrarInfoLibro(idsLibros[i]);
-        });
+        botonesDetalles[i].addEventListener('click', () => mostrarInfoLibro(idsLibros[i]));
     }
 
     let botonesEliminar = document.querySelectorAll('.btnEliminar');
 
     for (let i = 0; i < botonesEliminar.length; i++) {
-        botonesEliminar[i].addEventListener('click', () => {
-            eliminarLibro(idsLibros[i]);
-        });
+        botonesEliminar[i].addEventListener('click', () => eliminarLibro(idsLibros[i]));
     }
 
     let botonesEditar = document.querySelectorAll('.btnEditar');
@@ -224,10 +211,8 @@ function mostrarLibros(libros) {
 
 function mostrarInfoLibro(idLibro) {
     fetch('http://localhost:8080/libros/' + idLibro)
-        .then((resultado) => {
-            return resultado.json();
-        })
-        .then((resultado) => {
+        .then(resultado => resultado.json())
+        .then(resultado => {
 
             if (resultado.ok) {
                 let libro = resultado.data;
@@ -287,9 +272,7 @@ function mostrarInfoLibro(idLibro) {
                 fichaTecnica.innerHTML = cadenaLibro;
             }
         })
-        .catch(() => {
-            alert('Ha habido un error al obtener los datos del libro');
-        });
+        .catch(() => alert('Ha habido un error al obtener los datos del libro'));
 }
 
 function eliminarLibro(idLibro) {
@@ -300,16 +283,14 @@ function eliminarLibro(idLibro) {
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
+    }).then(result => {
 
         if (result.value) {
             fetch('http://localhost:8080/libros/' + idLibro, {
                 method: 'DELETE'
             })
-            .then((resultado) => {
-                return resultado.json();
-            })
-            .then((resultado) => {
+            .then(resultado => resultado.json())
+            .then(resultado => {
                 toastr.success('Libro eliminado', 'Operación eliminada correctamente!!');
 
                 if (resultado.ok) {
@@ -323,14 +304,10 @@ function eliminarLibro(idLibro) {
 
 function mostrarFormEditarLibro(idLibro) {
     let btnEditar = document.getElementById('btnEditar');
-    btnEditar.addEventListener('click', () => {
-        editarLibro();
-    });
+    btnEditar.addEventListener('click', () => editarLibro());
 
     fetch('http://localhost:8080/libros/' + idLibro)
-        .then(resultado => {
-            return resultado.json();
-        })
+        .then(resultado => resultado.json())
         .then(resultado => {
 
             if (resultado.ok) {
@@ -367,14 +344,10 @@ function mostrarFormEditarLibro(idLibro) {
                         let url = document.getElementById('urla');
                         url.value = libro.url;
                     })
-                    .catch(() => {
-                        alert('Ha habido un error al mostrar el desplegable de autores');
-                    });
+                    .catch(() => alert('Ha habido un error al mostrar el desplegable de autores'));
             }
         })
-        .catch(() => {
-            alert('Ha habido un error al obtener los datos del libro');
-        });
+        .catch(() => alert('Ha habido un error al obtener los datos del libro'));
 }
 
 function editarLibro() {
@@ -410,9 +383,7 @@ function editarLibro() {
                     'Content-Type': 'application/json'
                 }
             })
-                .then(resultado => {
-                    return resultado.json();
-                })
+                .then(resultado => resultado.json())
                 .then(resultado => {
 
                     if (resultado.ok) {
@@ -423,8 +394,6 @@ function editarLibro() {
                         getLibros();
                     }
                 })
-                .catch(() => {
-                    alert('Ha habido un error al modificar los datos del libro');
-                });
+                .catch(() => alert('Ha habido un error al modificar los datos del libro'));
         });
 }

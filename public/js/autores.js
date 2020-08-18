@@ -1,13 +1,10 @@
-window.addEventListener('DOMContentLoaded', () => {
-   obtenerAutores();
-});
+window.addEventListener('DOMContentLoaded', () => obtenerAutores());
 
 function obtenerAutores() {
     fetch('http://localhost:8080/autores/totalLibros')
+        .then(resultado => resultado.json())
         .then(resultado => {
-            return resultado.json();
-        })
-        .then(resultado => {
+
             if (resultado.ok) {
                 let autores = resultado.data;
                 mostrarAutores(autores);
@@ -67,9 +64,7 @@ function mostrarLibrosPorAutor(idAutor, nombre) {
     tituloLibros.innerText = 'Libros de ' + nombre;
 
     fetch('http://localhost:8080/autores/' + idAutor + '/libros')
-        .then(resultado => {
-            return resultado.json();
-        })
+        .then(resultado => resultado.json())
         .then(resultado => {
             if (resultado.ok) {
                 let libros = resultado.data;
