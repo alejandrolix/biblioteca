@@ -23,9 +23,9 @@ function mostrarAutores(nombreSelect) {
                         let numOptions = selectAutores.options.length;
 
                         while (numOptions >= 1) {
-                            let ultimaPosicion = selectAutores.options.length - 1;
+                            let numUltimaPosicion = selectAutores.options.length - 1;
 
-                            selectAutores.options[ultimaPosicion].remove();
+                            selectAutores.options[numUltimaPosicion].remove();
                             numOptions = selectAutores.options.length;
                         }
                     }
@@ -137,7 +137,16 @@ function getLibros() {
         .then(resultado => {
 
             if (resultado.ok) {
-                let libros = resultado.data;
+                let libros = [];
+
+                for (let i = 0; i < resultado.data.length; i++) {
+                    let libro = resultado.data[i];
+
+                    if (libro.activo) {
+                        libros.push(libro);
+                    }
+                }
+
                 mostrarLibros(libros);
             }
         })
@@ -147,50 +156,44 @@ function getLibros() {
 function mostrarLibros(libros) {
     let divLibros = document.getElementById('libros');
     let cadenaLibros = '';
-    let idsLibros = [];
 
     for (let i = 0; i < libros.length; i++) {
         let libro = libros[i];
+        let precio = libro.precio.toLocaleString('es-ES', {
+            style: 'currency',
+            currency: 'EUR'
+        });
 
-        if (libro.activo) {
-            idsLibros.push(libro.cod);
+        cadenaLibros = cadenaLibros + '<div class="col-md-4" id="' + libro.cod + '">\n' +
+            '                            <div class="card mb-4 shadow-sm">\n' +
+            '                                <img src="imagenes/' + libro.imagen + '" class="card-img-top" alt="' + libro.titulo + '">\n' +
+            '                                <div class="card-body">\n' +
+            '                                    <p class="card-text">' + libro.titulo + '</p>\n';
 
-            let precio = libro.precio.toLocaleString('es-ES', {
-                style: 'currency',
-                currency: 'EUR'
-            });
-
-            cadenaLibros = cadenaLibros + '<div class="col-md-4" id="' + libro.cod + '">\n' +
-                '                            <div class="card mb-4 shadow-sm">\n' +
-                '                                <img src="imagenes/' + libro.imagen + '" class="card-img-top" alt="' + libro.titulo + '">\n' +
-                '                                <div class="card-body">\n' +
-                '                                    <p class="card-text">' + libro.titulo + '</p>\n';
-
-            if (libro.autor == null) {
-                cadenaLibros = cadenaLibros + '<p class="card-text">Anónimo</p>\n';
-            }
-            else {
-                cadenaLibros = cadenaLibros + '<p class="card-text">' + libro.autor + '</p>\n';
-            }
-
-            cadenaLibros = cadenaLibros + '<div class="d-flex justify-content-between align-items-center">\n' +
-                '                                        <div class="btn-group">\n' +
-                '                                            <button type="button" class="btnDetalles btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#verLibro">\n' +
-                '                                                <i class="fas fa-eye"></i>\n' +
-                '                                            </button>\n' +
-                '                                            <button class="btnEditar btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#formularioLibro">\n' +
-                '                                                <i class="fas fa-edit"></i>\n' +
-                '                                            </button>\n' +
-                '                                            <button class="btnEliminar btn btn-sm btn-outline-secondary">\n' +
-                '                                                <i class="fas fa-trash"></i>\n' +
-                '                                            </button>\n' +
-                '                                        </div>\n' +
-                '                                        <small class="text-muted">' + precio + '</small>\n' +
-                '                                    </div>\n' +
-                '                                </div>\n' +
-                '                            </div>\n' +
-                '                        </div>';
+        if (libro.autor == null) {
+            cadenaLibros = cadenaLibros + '<p class="card-text">Anónimo</p>\n';
         }
+        else {
+            cadenaLibros = cadenaLibros + '<p class="card-text">' + libro.autor + '</p>\n';
+        }
+
+        cadenaLibros = cadenaLibros + '<div class="d-flex justify-content-between align-items-center">\n' +
+            '                                        <div class="btn-group">\n' +
+            '                                            <button type="button" class="btnDetalles btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#verLibro">\n' +
+            '                                                <i class="fas fa-eye"></i>\n' +
+            '                                            </button>\n' +
+            '                                            <button class="btnEditar btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#formularioLibro">\n' +
+            '                                                <i class="fas fa-edit"></i>\n' +
+            '                                            </button>\n' +
+            '                                            <button class="btnEliminar btn btn-sm btn-outline-secondary">\n' +
+            '                                                <i class="fas fa-trash"></i>\n' +
+            '                                            </button>\n' +
+            '                                        </div>\n' +
+            '                                        <small class="text-muted">' + precio + '</small>\n' +
+            '                                    </div>\n' +
+            '                                </div>\n' +
+            '                            </div>\n' +
+            '                        </div>';
     }
 
     divLibros.innerHTML = cadenaLibros;
@@ -198,13 +201,17 @@ function mostrarLibros(libros) {
     let botonesDetalles = document.querySelectorAll('.btnDetalles');
 
     for (let i = 0; i < botonesDetalles.length; i++) {
-        botonesDetalles[i].addEventListener('click', () => mostrarInfoLibro(idsLibros[i]));
+        let libro = libros[i];
+
+        botonesDetalles[i].addEventListener('click', () => mostrarInfoLibro(libro.cod));
     }
 
     let botonesEliminar = document.querySelectorAll('.btnEliminar');
 
     for (let i = 0; i < botonesEliminar.length; i++) {
-        botonesEliminar[i].addEventListener('click', () => eliminarLibro(idsLibros[i]));
+        let libro = libros[i];
+
+        botonesEliminar[i].addEventListener('click', () => eliminarLibro(libro.cod));
     }
 
     let botonesEditar = document.querySelectorAll('.btnEditar');
