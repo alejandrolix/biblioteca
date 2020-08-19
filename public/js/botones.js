@@ -1,5 +1,7 @@
 import {Libro} from "./libro.js";
 import {Formularios} from "./formularios.js";
+import {Autor} from "./autor.js";
+import {Libreria} from "./libreria.js";
 
 export class Botones {
     _botones;
@@ -33,14 +35,21 @@ export class Botones {
                     break;
 
                 case '.btnEditar':
-                    funcion = () => {
-                        Formularios.mostrarFormCrearEditarLibro(libro.cod);
-
-                    }
+                    funcion = () => Formularios.mostrarFormCrearEditarLibro(libro.cod);
                     break;
 
                 case '.btnEliminar':
                     funcion = () => libro.eliminar();
+                    break;
+
+                case '.btnVerLibros':
+                    let idBoton = boton.getAttribute('id');
+
+                    let autor = new Autor();
+                    autor.codigo = idBoton.split('-')[0];
+                    autor.nombre = idBoton.split('-')[1];
+
+                    funcion = () => Libreria.mostrarLibrosPorAutor(autor);
                     break;
 
                 default:
