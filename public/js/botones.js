@@ -1,40 +1,54 @@
 import {Libro} from "./libro.js";
+import {Formularios} from "./formularios.js";
 
-class Botones {
+export class Botones {
     _botones;
-    _nombreClaseBotones;
+    _nombreClase;
 
-    constructor(nombreClaseBotones) {
-        this._nombreClaseBotones = nombreClaseBotones;
+    constructor() {
+        this._botones = null;
+        this._nombreClase = null;
     }
 
     obtenerBotones(nombreClase) {
+        this._nombreClase = nombreClase;
         this._botones = document.querySelectorAll(nombreClase);
     }
 
-    asociarEvento(libros) {
+    asociarEventoClick(posicionCodLibro) {
         for (let i = 0; i < this._botones.length; i++) {
-            let libro = new Libro(libros[i].cod);
+            let boton = this._botones[i];
 
-            switch (this._nombreClaseBotones) {
+            let id = boton.getAttribute('id')
+                          .substr(posicionCodLibro);
+
+            let libro = new Libro();
+            libro.cod = id;
+
+            let funcion = null;
+
+            switch (this._nombreClase) {
                 case '.btnDetalles':
-                    libro.mostrar();
+                    funcion = () => libro.mostrar();
                     break;
 
                 case '.btnEditar':
-                    libro.editar();
+                    funcion = () => {
+                        Formularios.mostrarFormCrearEditarLibro(libro.cod);
+
+                    }
                     break;
 
                 case '.btnEliminar':
-                    libro.eliminar();
+                    funcion = () => libro.eliminar();
                     break;
 
                 default:
-                    alert('error');
+                    alert('No existe ningún botón con la clase ' + this._nombreClase);
                     break;
             }
 
-            this._botones[i].addEventListener('click', () => libro.mostrar());
+            boton.addEventListener('click', () => funcion());
         }
     }
 }

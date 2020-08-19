@@ -1,10 +1,11 @@
 import {PeticionAjax} from "./peticionAjax.js";
+import {Botones} from "./botones.js";
 
 export class Libreria {
     static getLibros() {
-        PeticionAjax.peticionGet('http://localhost:8080/libros')
+        PeticionAjax.get('http://localhost:8080/libros')
             .then(libros => Libreria.mostrarLibros(libros))
-            .catch(error => Swal.fire('Error', 'No se ha podido obtener los libros del servidor: ' + error, 'error'));
+            .catch(error => Swal.fire('Error', 'No se han podido obtener los libros del servidor: ' + error, 'error'));
     }
 
     static mostrarLibros(libros) {
@@ -20,7 +21,7 @@ export class Libreria {
                     currency: 'EUR'
                 });
 
-                cadenaLibros = cadenaLibros + '<div class="col-md-4" id="' + libro.cod + '">\n' +
+                cadenaLibros = cadenaLibros + '<div class="col-md-4">\n' +
                     '                            <div class="card mb-4 shadow-sm">\n' +
                     '                                <img src="imagenes/' + libro.imagen + '" class="card-img-top" alt="' + libro.titulo + '">\n' +
                     '                                <div class="card-body">\n' +
@@ -28,19 +29,20 @@ export class Libreria {
 
                 if (libro.autor == null) {
                     cadenaLibros = cadenaLibros + '<p class="card-text">Anónimo</p>\n';
-                } else {
+                }
+                else {
                     cadenaLibros = cadenaLibros + '<p class="card-text">' + libro.autor + '</p>\n';
                 }
 
                 cadenaLibros = cadenaLibros + '<div class="d-flex justify-content-between align-items-center">\n' +
                     '                                        <div class="btn-group">\n' +
-                    '                                            <button type="button" class="btnDetalles btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#verLibro">\n' +
+                    '                                            <button type="button" id="btnDetalles-' + libro.cod + '" class="btnDetalles btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#verLibro">\n' +
                     '                                                <i class="fas fa-eye"></i>\n' +
                     '                                            </button>\n' +
-                    '                                            <button class="btnEditar btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#formularioLibro">\n' +
+                    '                                            <button type="button" id="btnEditar-' + libro.cod + '" class="btnEditar btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#formularioLibro">\n' +
                     '                                                <i class="fas fa-edit"></i>\n' +
                     '                                            </button>\n' +
-                    '                                            <button class="btnEliminar btn btn-sm btn-outline-secondary">\n' +
+                    '                                            <button type="button" id="btnEliminar-' + libro.cod + '" class="btnEliminar btn btn-sm btn-outline-secondary">\n' +
                     '                                                <i class="fas fa-trash"></i>\n' +
                     '                                            </button>\n' +
                     '                                        </div>\n' +
@@ -52,31 +54,17 @@ export class Libreria {
 
                 divLibros.innerHTML = cadenaLibros;
 
-                let botonesDetalles = document.querySelectorAll('.btnDetalles');
+                let botonesDetalles = new Botones();
+                botonesDetalles.obtenerBotones('.btnDetalles');
+                botonesDetalles.asociarEventoClick(12);
 
-                for (let i = 0; i < botonesDetalles.length; i++) {
-                    let libro = libros[i];
+                let botonesEditar = new Botones();
+                botonesEditar.obtenerBotones('.btnEditar');
+                botonesEditar.asociarEventoClick(10);
 
-                    botonesDetalles[i].addEventListener('click', () => mostrarInfoLibro(libro.cod));
-                }
-
-                let botonesEliminar = document.querySelectorAll('.btnEliminar');
-
-                for (let i = 0; i < botonesEliminar.length; i++) {
-                    let libro = libros[i];
-
-                    botonesEliminar[i].addEventListener('click', () => eliminarLibro(libro.cod));
-                }
-
-                let botonesEditar = document.querySelectorAll('.btnEditar');
-
-                for (let i = 0; i < botonesEditar.length; i++) {
-                    botonesEditar[i].addEventListener('click', () => {
-                        let idLibro = botonesEditar[i].parentNode.parentNode.parentNode.parentNode.parentNode.id;
-
-                        mostrarFormularioCrearEditarLibro(idLibro);
-                    });
-                }
+                let botonesEliminar = new Botones();
+                botonesEliminar.obtenerBotones('.btnEliminar');
+                botonesEliminar.asociarEventoClick(12);
             }
         }
     }
