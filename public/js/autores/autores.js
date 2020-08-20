@@ -1,4 +1,4 @@
-import {PeticionAjax} from "../peticionAjax.js";
+import {PeticionAjax} from "../utilidades/peticionAjax.js";
 import {Libreria} from "../libreria.js";
 
 window.addEventListener('DOMContentLoaded', () => Libreria.mostrarAutores());

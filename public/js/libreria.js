@@ -1,4 +1,4 @@
-import {PeticionAjax} from "./peticionAjax.js";
+import {PeticionAjax} from "./utilidades/peticionAjax.js";
 import {Botones} from "./botones.js";
 
 export class Libreria {

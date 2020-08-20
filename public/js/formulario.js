@@ -1,4 +1,4 @@
-import {PeticionAjax} from "./peticionAjax.js";
+import {PeticionAjax} from "./utilidades/peticionAjax.js";
 import {Autores} from "./autores/autores.js";
 import {Libro} from "./libro.js";
 

@@ -1,7 +1,7 @@
-import {PeticionAjax} from "./peticionAjax.js";
+import {PeticionAjax} from "./utilidades/peticionAjax.js";
 import {Libreria} from "./libreria.js";
 import {Formulario} from "./formulario.js";
-import {ConversorBase64} from "./conversorBase64.js";
+import {ConversorBase64} from "./utilidades/conversorBase64.js";
 
 export class Libro {
     _cod;
