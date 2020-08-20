@@ -1,5 +1,5 @@
 import {PeticionAjax} from "./peticionAjax.js";
-import {Autores} from "./autores.js";
+import {Autores} from "./autores/autores.js";
 import {Libro} from "./libro.js";
 
 export class Formulario {

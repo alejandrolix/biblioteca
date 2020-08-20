@@ -1,6 +1,6 @@
 import {Libro} from "./libro.js";
 import {Formulario} from "./formulario.js";
-import {Autor} from "./autor.js";
+import {Autor} from "./autores/autor.js";
 import {Libreria} from "./libreria.js";
 
 export class Botones {

@@ -1,7 +1,7 @@
 'use strict';
 
 import {Libreria} from "./libreria.js";
-import {Autores} from "./autores.js";
+import {Autores} from "./autores/autores.js";
 import {Formulario} from "./formulario.js";
 
 (() => {
