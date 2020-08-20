@@ -23,13 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25e7740e-a30d-4c4e-869e-e7bef4396e0e" name="Default Changelist" comment="Eliminado comentarios autores.html y">
-      <change beforePath="$PROJECT_DIR$/public/autores.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/autores.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/autor.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/autores/autor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/autores.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/autores/autores.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/botones.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/botones.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/formulario.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/formulario.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/libro.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/libros/libro.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/autores/autores.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/autores/autores.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,15 +66,15 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2020.1.4\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\formacion\Downloads\libreria" />
-      <recent name="C:\Users\formacion\Downloads\libreria\css" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\formacion\Downloads\libreria\public\js" />
+      <recent name="C:\Users\formacion\Downloads\libreria\public\js\libros" />
+      <recent name="C:\Users\formacion\Downloads\libreria\public\js\autores" />
       <recent name="C:\Users\formacion\Downloads\libreria\public\pruebas" />
       <recent name="C:\Users\formacion\Downloads\libreria" />
-      <recent name="C:\Users\formacion\Downloads\libreria\public" />
-      <recent name="C:\Users\formacion\Downloads\libreria\extra" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\formacion\Downloads\libreria" />
       <recent name="C:\Users\formacion\Downloads\libreria\css" />
     </key>
   </component>
