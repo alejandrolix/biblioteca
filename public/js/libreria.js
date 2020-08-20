@@ -78,7 +78,7 @@ export class Libreria {
                     let autor = autores[i];
 
                     cadenaAutores = cadenaAutores + '<div class="col-md-4 mb-5">\n' +
-                        '                               <div class="card" style="width: 18rem;">\n' +
+                        '                               <div class="card tarjeta">\n' +
                         '                                <div class="card-body">\n' +
                         '                                    <h5 class="card-title">' + autor.nombre + '</h5>\n';
 

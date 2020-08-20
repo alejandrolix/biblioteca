@@ -24,7 +24,8 @@
   <component name="ChangeListManager">
     <list default="true" id="25e7740e-a30d-4c4e-869e-e7bef4396e0e" name="Default Changelist" comment="Eliminado comentarios autores.html y">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/estilosLibros.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/estilosLibros.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/libreria.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/libreria.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597854698050</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Añadido apartado &quot;Autores&quot; en index.html">
+      <created>1597905797797</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1597905797797</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,7 +255,8 @@
     <MESSAGE value="Añadido variable que crea la promesa que rellena el desplegable con los autores" />
     <MESSAGE value="Cambiado usuario y contraseña que se conecta a la bd del ordenador de casa" />
     <MESSAGE value="Refactorizado apartado &quot;Libros&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactorizado apartado &quot;Libros&quot;" />
+    <MESSAGE value="Añadido apartado &quot;Autores&quot; en index.html" />
+    <option name="LAST_COMMIT_MESSAGE" value="Añadido apartado &quot;Autores&quot; en index.html" />
   </component>
   <component name="WindowStateProjectService">
     <state x="436" y="181" width="1089" height="713" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597675615677">
@@ -375,10 +384,10 @@
     </state>
     <state x="479" y="11" width="578" height="801" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1597837882523" />
     <state x="599" y="14" width="723" height="1011" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1597853676785" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1597826423647">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1597905973394">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1597826423647" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1597905973394" />
     <state x="539" y="183" width="840" height="856" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1597678729058" />
   </component>
 </project>
