@@ -2,7 +2,7 @@ import {PeticionAjax} from "./peticionAjax.js";
 import {Autores} from "./autores.js";
 import {Libro} from "./libro.js";
 
-export class Formularios {
+export class Formulario {
     static mostrarFormCrearEditarLibro(idLibro) {
         let tituloModal = document.getElementById('tituloModal');
         let btnAccion = document.getElementById('btnAccion');

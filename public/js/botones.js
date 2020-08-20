@@ -1,5 +1,5 @@
 import {Libro} from "./libro.js";
-import {Formularios} from "./formularios.js";
+import {Formulario} from "./formulario.js";
 import {Autor} from "./autor.js";
 import {Libreria} from "./libreria.js";
 
@@ -35,7 +35,7 @@ export class Botones {
                     break;
 
                 case '.btnEditar':
-                    funcion = () => Formularios.mostrarFormCrearEditarLibro(libro.cod);
+                    funcion = () => Formulario.mostrarFormCrearEditarLibro(libro.cod);
                     break;
 
                 case '.btnEliminar':

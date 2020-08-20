@@ -1,6 +1,6 @@
 import {PeticionAjax} from "./peticionAjax.js";
 import {Libreria} from "./libreria.js";
-import {Formularios} from "./formularios.js";
+import {Formulario} from "./formulario.js";
 import {ConversorBase64} from "./conversorBase64.js";
 
 export class Libro {
@@ -144,7 +144,7 @@ export class Libro {
                         libro.imagen = imagen;
                         PeticionAjax.post('http://localhost:8080/libros', libro)
                             .then(() => {
-                                Formularios.limpiar('formularioLibro');
+                                Formulario.limpiar('formularioLibro');
                                 $('#formularioLibro').modal('hide');
 
                                 toastr.success('Se ha creado el libro correctamente', 'Libro creado');
@@ -183,7 +183,7 @@ export class Libro {
                     libroEditar.imagen = imagen;
                     PeticionAjax.put('http://localhost:8080/libros/' + libroEditar.codigo, libroEditar)
                         .then(() => {
-                            Formularios.limpiar('formularioLibro');
+                            Formulario.limpiar('formularioLibro');
                             $('#formularioLibro').modal('hide');
                             toastr.success('Se ha actualizado el libro correctamente', 'Libro actualizado');
 

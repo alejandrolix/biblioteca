@@ -2,7 +2,7 @@
 
 import {Libreria} from "./libreria.js";
 import {Autores} from "./autores.js";
-import {Formularios} from "./formularios.js";
+import {Formulario} from "./formulario.js";
 
 (() => {
     window.addEventListener('load', () => {
@@ -11,7 +11,7 @@ import {Formularios} from "./formularios.js";
         let btnNuevoLibro = document.getElementById('btnNuevoLibro');
         btnNuevoLibro.addEventListener('click', () => {
             Autores.cargarSelect(null);
-            Formularios.mostrarFormCrearEditarLibro(0);
+            Formulario.mostrarFormCrearEditarLibro(0);
         });
     });
 })();
