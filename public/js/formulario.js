@@ -25,35 +25,40 @@ export class Formulario {
         else {
             PeticionAjax.get('http://localhost:8080/libros/' + idLibro)
                 .then(libro => {
-                    Autores.cargarSelect(libro.autor);
+                    Autores.cargarSelect(libro[0].autor);
                     txtBtnAccion = document.createTextNode('Editar');
 
                     if (btnAccion.childNodes.length == 0) {
                         btnAccion.appendChild(txtBtnAccion);
                     }
 
-                    btnAccion.addEventListener('click', () => libro.editar());
+                    btnAccion.addEventListener('click', () => {
+                        let nuevoLibro = new Libro();
+                        nuevoLibro.cod = libro[0].cod;
 
-                    tituloModal.innerText = 'Editar libro ' + libro.titulo;
+                        nuevoLibro.editar();
+                    });
+
+                    tituloModal.innerText = 'Editar libro ' + libro[0].titulo;
 
                     let activo = document.getElementById('activo');
-                    activo.checked = libro.activo;
+                    activo.checked = libro[0].activo;
 
                     let codigo = document.getElementById('cod');
-                    codigo.value = libro.cod;
+                    codigo.value = libro[0].cod;
                     codigo.disabled = true;
 
                     let titulo = document.getElementById('titulo');
-                    titulo.value = libro.titulo;
+                    titulo.value = libro[0].titulo;
 
                     let isbn = document.getElementById('isbn');
-                    isbn.value = libro.isbn;
+                    isbn.value = libro[0].isbn;
 
                     let precio = document.getElementById('precio');
-                    precio.value = libro.precio;
+                    precio.value = libro[0].precio;
 
                     let url = document.getElementById('url');
-                    url.value = libro.url;
+                    url.value = libro[0].url;
                 });
         }
     }

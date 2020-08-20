@@ -24,7 +24,7 @@ class Imagen {
         var fileName =  libro.COD + "." + extension;
 
         try {
-            fs.writeFileSync(__dirname + "../public/imagenes/" + fileName, imageBuffer, 'utf8');
+            fs.writeFileSync(__dirname + "./../public/imagenes/" + fileName, imageBuffer, 'utf8');
             libro.IMAGEN = fileName;
 
             return true;

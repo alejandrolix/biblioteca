@@ -99,11 +99,12 @@ export class Libro {
             cancelButtonText: 'No'
         }).then(result => {
             if (result.value) {
+
                 PeticionAjax.delete('http://localhost:8080/libros/' + this._cod)
                     .then(() => {
                         toastr.success('Libro eliminado', 'Operación eliminada correctamente!!');
-                        let libro = document.getElementById(this._cod);
-                        libro.remove();
+                        let tarjetaLibro = document.getElementById('btnDetalles-' + this.cod).parentNode.parentNode.parentNode.parentNode.parentNode;
+                        tarjetaLibro.remove();
                     });
             }
         });
@@ -196,17 +197,17 @@ export class Libro {
     mostrar() {
         PeticionAjax.get('http://localhost:8080/libros/' + this._cod)
             .then(libro => {
-                let precio = libro.precio.toLocaleString('es-ES', {
+                let precio = libro[0].precio.toLocaleString('es-ES', {
                     style: 'currency',
                     currency: 'EUR'
                 });
 
                 let tituloLibro = document.getElementById('tituloLibro');
-                tituloLibro.innerText = libro.titulo;
+                tituloLibro.innerText = libro[0].titulo;
 
                 let imgLibro = document.getElementById('imagen');
-                imgLibro.setAttribute('src', 'imagenes/' + libro.imagen);
-                imgLibro.setAttribute('alt', libro.titulo);
+                imgLibro.setAttribute('src', 'imagenes/' + libro[0].imagen);
+                imgLibro.setAttribute('alt', libro[0].titulo);
 
                 let cadenaLibro = '';
                 let fichaTecnica = document.querySelector('.infoLibro');
@@ -222,11 +223,11 @@ export class Libro {
                     '                                    </div>\n' +
                     '                                    <div class="col-md-8">\n';
 
-                if (libro.autor == null) {
+                if (libro[0].autor == null) {
                     cadenaLibro = cadenaLibro + '<p>Anónimo</p>\n';
                 }
                 else {
-                    cadenaLibro = cadenaLibro + '<p>' + libro.autor + '</p>\n';
+                    cadenaLibro = cadenaLibro + '<p>' + libro[0].autor + '</p>\n';
                 }
 
                 cadenaLibro = cadenaLibro + '</div>\n' +
@@ -236,7 +237,7 @@ export class Libro {
                     '                                        <p>ISBN</p>\n' +
                     '                                    </div>\n' +
                     '                                    <div class="col-md-8">\n' +
-                    '                                        <p>' + libro.isbn + '</p>\n' +
+                    '                                        <p>' + libro[0].isbn + '</p>\n' +
                     '                                    </div>\n' +
                     '                                </div>\n' +
                     '                                <div class="row">\n' +
