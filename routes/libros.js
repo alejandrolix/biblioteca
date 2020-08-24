@@ -7,8 +7,28 @@ let router = express.Router();
 router.get('/', (req, res) => {
     let sql = `select l.cod, l.titulo, l.precio, l.imagen, l.activo, a.nombre as autor 
                from libros l 
-                    left join autor a on a.cod = l.cod_autor
-               order by l.titulo;`;
+                    left join autor a on a.cod = l.cod_autor `;
+
+    let ordenadoPor = req.query.ordenadoPor;
+
+    if (ordenadoPor != undefined) {
+        switch (ordenadoPor) {
+            case 'titulo':
+                sql = sql + 'order by l.titulo;';
+    
+                break;
+        
+            case 'autor':
+                sql = sql + 'order by autor;';
+    
+                break;
+    
+            case 'precio':
+                sql = sql + 'order by l.precio;';
+                
+                break;
+        }  
+    }  
 
     let respuesta = null;
     let conexionBd = new Conexion();
