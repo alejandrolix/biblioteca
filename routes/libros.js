@@ -109,6 +109,49 @@ router.get('/activos', (req, res) => {
         });
 });
 
+router.get('/noActivos', (req, res) => {
+    let sql = `select l.cod, l.titulo, l.precio, l.imagen, a.nombre as autor 
+               from libros l 
+                    left join autor a on a.cod = l.cod_autor 
+               where l.activo = false      
+               order by l.titulo;`;     
+
+    let respuesta = null;
+    let conexionBd = new Conexion();
+
+    conexionBd.consulta(sql)
+        .then(resultado => {
+            let libros = resultado;
+
+            for (let i = 0; i < libros.length;  i++) {
+                let libro = libros[i];
+                let urlImagen = 'public/imagenes/' + libro.imagen;
+
+                if (!Imagen.existeImagen(urlImagen)) {
+                    libro.imagen = 'noDisponible.png';
+                }
+            }
+
+            respuesta = {
+                ok: true,
+                mensaje: 'Libros obtenidos correctamente',
+                data: libros
+            };
+
+            res.status(200)
+               .send(respuesta);
+        })
+        .catch(error => {
+            respuesta = {
+                ok: false,
+                mensaje: error.message
+            };
+
+            res.status(500)
+               .send(respuesta);
+        });
+});
+
 router.get('/:id', (req, res) => {
     let idLibro = req.params.id;
     let sql = `select l.cod, l.titulo, l.isbn, l.precio, l.imagen, l.url, l.activo, a.nombre as autor 
