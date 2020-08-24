@@ -23,11 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25e7740e-a30d-4c4e-869e-e7bef4396e0e" name="Default Changelist" comment="Eliminado comentarios autores.html y">
-      <change afterPath="$PROJECT_DIR$/public/imagenes/741.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/formulario.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/formulario.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/libro.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/libro.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utilidades/imagen.js" beforeDir="false" afterPath="$PROJECT_DIR$/utilidades/imagen.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,7 +242,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597916076236</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Corregido mostrar información libro, eliminar y modificar los datos">
+      <created>1597921151271</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1597921151271</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,7 +293,8 @@
     <MESSAGE value="Cambiado nombre clase &quot;Formularios&quot; por &quot;Formulario&quot;" />
     <MESSAGE value="Creada carpeta &quot;utilidades&quot; para guardar la clase de peticionAjax y conversorBase64" />
     <MESSAGE value="Refactorizado API REST separando los servicios web en distintos archivos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactorizado API REST separando los servicios web en distintos archivos" />
+    <MESSAGE value="Corregido mostrar información libro, eliminar y modificar los datos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Corregido mostrar información libro, eliminar y modificar los datos" />
   </component>
   <component name="WindowStateProjectService">
     <state x="436" y="181" width="1089" height="713" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597675615677">
@@ -396,10 +400,10 @@
     </state>
     <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1597214997999" />
     <state x="424" y="208" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1597416925164" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1597916077728">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1597921153127">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1597916077728" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1597921153127" />
     <state x="451" y="183" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1597329081945" />
     <state x="859" y="398" key="com.intellij.database.actions.DdlActions$CreateObject$1" timestamp="1597432546378">
       <screen x="0" y="0" width="1920" height="1040" />
