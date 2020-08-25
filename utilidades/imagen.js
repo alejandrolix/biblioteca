@@ -42,6 +42,13 @@ class Imagen {
             return false;
         }
     }
+
+    static convertirABase64(urlImagen) {
+        let bitmap = fs.readFileSync(urlImagen);
+        let buffer = new Buffer(bitmap).toString('base64');
+
+        return buffer;
+    }
 }
 
 module.exports = Imagen;

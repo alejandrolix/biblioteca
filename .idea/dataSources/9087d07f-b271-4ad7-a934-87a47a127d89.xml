@@ -1144,87 +1144,93 @@ CAJON</ColNames>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <index id="354" parent="329" name="UK_ISBN_LIB">
+    <column id="354" parent="329" name="PUNTUACION">
+      <Position>9</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <index id="355" parent="329" name="UK_ISBN_LIB">
       <ColNames>ISBN</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="355" parent="329" name="FK_LIBROS_AUTOR">
+    <index id="356" parent="329" name="FK_LIBROS_AUTOR">
       <ColNames>COD_AUTOR</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="356" parent="329" name="PRIMARY">
+    <key id="357" parent="329" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>COD</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="357" parent="329" name="UK_ISBN_LIB">
+    <key id="358" parent="329" name="UK_ISBN_LIB">
       <ColNames>ISBN</ColNames>
       <UnderlyingIndexName>UK_ISBN_LIB</UnderlyingIndexName>
     </key>
-    <foreign-key id="358" parent="329" name="FK_LIBROS_AUTOR">
+    <foreign-key id="359" parent="329" name="FK_LIBROS_AUTOR">
       <ColNames>COD_AUTOR</ColNames>
       <RefTableName>autor</RefTableName>
       <RefColNames>COD</RefColNames>
     </foreign-key>
-    <column id="359" parent="330" name="CODUSU">
+    <column id="360" parent="330" name="CODUSU">
       <Position>1</Position>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="360" parent="330" name="CODEJEM">
+    <column id="361" parent="330" name="CODEJEM">
       <Position>2</Position>
       <DataType>varchar(5)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="361" parent="330" name="FECHAPREST">
+    <column id="362" parent="330" name="FECHAPREST">
       <Position>3</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="362" parent="330" name="FECHADEV">
+    <column id="363" parent="330" name="FECHADEV">
       <Position>4</Position>
       <DataType>date|0s</DataType>
     </column>
-    <index id="363" parent="330" name="FK_PRESTAR_EJEMPLAR">
+    <index id="364" parent="330" name="FK_PRESTAR_EJEMPLAR">
       <ColNames>CODEJEM</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="364" parent="330" name="PRIMARY">
+    <key id="365" parent="330" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>CODUSU
 CODEJEM
 FECHAPREST</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="365" parent="330" name="FK_PRESTAR_USUARIO">
+    <foreign-key id="366" parent="330" name="FK_PRESTAR_USUARIO">
       <ColNames>CODUSU</ColNames>
       <RefTableName>usuarios</RefTableName>
       <RefColNames>COD</RefColNames>
     </foreign-key>
-    <foreign-key id="366" parent="330" name="FK_PRESTAR_EJEMPLAR">
+    <foreign-key id="367" parent="330" name="FK_PRESTAR_EJEMPLAR">
       <ColNames>CODEJEM</ColNames>
       <RefTableName>ejemplares</RefTableName>
       <RefColNames>COD</RefColNames>
     </foreign-key>
-    <column id="367" parent="331" name="COD">
+    <column id="368" parent="331" name="COD">
       <Position>1</Position>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="368" parent="331" name="NOMBRE">
+    <column id="369" parent="331" name="NOMBRE">
       <Position>2</Position>
       <DataType>varchar(60)|0s</DataType>
     </column>
-    <column id="369" parent="331" name="DIRECCION">
+    <column id="370" parent="331" name="DIRECCION">
       <Position>3</Position>
       <DataType>varchar(100)|0s</DataType>
     </column>
-    <column id="370" parent="331" name="TELEFONO">
+    <column id="371" parent="331" name="TELEFONO">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
     </column>
-    <key id="371" parent="331" name="PRIMARY">
+    <key id="372" parent="331" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>COD</ColNames>
       <Primary>1</Primary>

@@ -43,9 +43,21 @@ router.get('/', (req, res) => {
             for (let i = 0; i < libros.length;  i++) {
                 let libro = libros[i];
                 let urlImagen = 'public/imagenes/' + libro.imagen;
+                let imgBase64 = null;
+                let formatoImagen = null;
 
                 if (!Imagen.existeImagen(urlImagen)) {
-                    libro.imagen = 'noDisponible.png';
+                    imgBase64 = Imagen.convertirABase64('public/imagenes/noDisponible.png');
+                    formatoImagen = 'png';
+                }
+                else {
+                    imgBase64 = Imagen.convertirABase64(urlImagen);
+                    formatoImagen = urlImagen.split('.')[1];
+                }
+
+                libro.imagen = {
+                    imagen: imgBase64,
+                    formato: formatoImagen
                 }
             }
 
@@ -89,9 +101,21 @@ router.get('/activos', (req, res) => {
             for (let i = 0; i < libros.length;  i++) {
                 let libro = libros[i];
                 let urlImagen = 'public/imagenes/' + libro.imagen;
+                let imgBase64 = null;
+                let formatoImagen = null;
 
                 if (!Imagen.existeImagen(urlImagen)) {
-                    libro.imagen = 'noDisponible.png';
+                    imgBase64 = Imagen.convertirABase64('public/imagenes/noDisponible.png');
+                    formatoImagen = 'png';
+                }
+                else {
+                    imgBase64 = Imagen.convertirABase64(urlImagen);
+                    formatoImagen = urlImagen.split('.')[1];
+                }
+
+                libro.imagen = {
+                    imagen: imgBase64,
+                    formato: formatoImagen
                 }
             }
 
@@ -135,9 +159,21 @@ router.get('/noActivos', (req, res) => {
             for (let i = 0; i < libros.length;  i++) {
                 let libro = libros[i];
                 let urlImagen = 'public/imagenes/' + libro.imagen;
+                let imgBase64 = null;
+                let formatoImagen = null;
 
                 if (!Imagen.existeImagen(urlImagen)) {
-                    libro.imagen = 'noDisponible.png';
+                    imgBase64 = Imagen.convertirABase64('public/imagenes/noDisponible.png');
+                    formatoImagen = 'png';
+                }
+                else {
+                    imgBase64 = Imagen.convertirABase64(urlImagen);
+                    formatoImagen = urlImagen.split('.')[1];
+                }
+
+                libro.imagen = {
+                    imagen: imgBase64,
+                    formato: formatoImagen
                 }
             }
 
