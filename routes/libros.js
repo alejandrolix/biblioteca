@@ -5,10 +5,10 @@ const Imagen = require("../utilidades/imagen");
 let router = express.Router();
 
 router.get('/', (req, res) => {
-    let sql = `select l.cod, l.titulo, l.precio, l.imagen, l.activo, case
-                                                                        when a.nombre is null then 'Anónimo'
-                                                                        when a.nombre is not null then a.nombre
-                                                                     end as autor 
+    let sql = `select l.cod, l.titulo, l.precio, l.imagen, l.activo, l.puntuacion, case
+                                                                                        when a.nombre is null then 'Anónimo'
+                                                                                        when a.nombre is not null then a.nombre
+                                                                                   end as autor 
                from libros l 
                     left join autor a on a.cod = l.cod_autor `;
 
@@ -70,10 +70,10 @@ router.get('/', (req, res) => {
 });
 
 router.get('/activos', (req, res) => {
-    let sql = `select l.cod, l.titulo, l.precio, l.imagen, case
-                                                                when a.nombre is null then 'Anónimo'
-                                                                when a.nombre is not null then a.nombre
-                                                           end as autor 
+    let sql = `select l.cod, l.titulo, l.precio, l.imagen, l.puntuacion, case
+                                                                            when a.nombre is null then 'Anónimo'
+                                                                            when a.nombre is not null then a.nombre
+                                                                         end as autor 
                from libros l 
                     left join autor a on a.cod = l.cod_autor 
                where l.activo = true      
@@ -116,10 +116,10 @@ router.get('/activos', (req, res) => {
 });
 
 router.get('/noActivos', (req, res) => {
-    let sql = `select l.cod, l.titulo, l.precio, l.imagen, case
-                                                                when a.nombre is null then 'Anónimo'
-                                                                when a.nombre is not null then a.nombre
-                                                           end as autor 
+    let sql = `select l.cod, l.titulo, l.precio, l.imagen, l.puntuacion, case
+                                                                            when a.nombre is null then 'Anónimo'
+                                                                            when a.nombre is not null then a.nombre
+                                                                         end as autor 
                from libros l 
                     left join autor a on a.cod = l.cod_autor 
                where l.activo = false      
