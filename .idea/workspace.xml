@@ -23,12 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25e7740e-a30d-4c4e-869e-e7bef4396e0e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9087d07f-b271-4ad7-a934-87a47a127d89.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9087d07f-b271-4ad7-a934-87a47a127d89.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/utilidades/conversorBase64.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/utilidades/conversorBase64.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/libros.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/libros.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utilidades/imagen.js" beforeDir="false" afterPath="$PROJECT_DIR$/utilidades/imagen.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +108,10 @@
       <workItem from="1598278657262" duration="707000" />
       <workItem from="1598285952508" duration="1534000" />
       <workItem from="1598291925684" duration="3441000" />
-      <workItem from="1598362851768" duration="5861000" />
+      <workItem from="1598362851768" duration="7372000" />
+      <workItem from="1598372705765" duration="801000" />
+      <workItem from="1598373863675" duration="493000" />
+      <workItem from="1598452491067" duration="2471000" />
     </task>
     <task id="LOCAL-00001" summary="Guardar el precio del libro en una variable y mostrarlo">
       <created>1597301012565</created>
@@ -268,7 +267,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598292559779</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Añadido enviar imágenes en json para mostrarlas en Angular">
+      <created>1598370234586</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1598370234586</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -314,7 +320,8 @@
     <MESSAGE value="Refactorizado API REST separando los servicios web en distintos archivos" />
     <MESSAGE value="Corregido mostrar información libro, eliminar y modificar los datos" />
     <MESSAGE value="Cambiado mostrar el autor en lugar de null si el libro no tiene autor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cambiado mostrar el autor en lugar de null si el libro no tiene autor" />
+    <MESSAGE value="Añadido enviar imágenes en json para mostrarlas en Angular" />
+    <option name="LAST_COMMIT_MESSAGE" value="Añadido enviar imágenes en json para mostrarlas en Angular" />
   </component>
   <component name="WindowStateProjectService">
     <state x="436" y="181" width="1089" height="713" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1598363213059">
@@ -334,11 +341,11 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1597662776089" />
-    <state x="571" y="100" key="CommitChangelistDialog2" timestamp="1598292559181">
+    <state x="571" y="100" key="CommitChangelistDialog2" timestamp="1598370233883">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1597308704116" />
-    <state x="571" y="100" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1598292559181" />
+    <state x="571" y="100" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1598370233883" />
     <state x="98" y="69" width="1736" height="856" key="DiffContextDialog" timestamp="1598363133660">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

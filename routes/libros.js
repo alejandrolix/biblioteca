@@ -409,4 +409,47 @@ router.put('/:id', (req, res) => {
         });
 });
 
+router.put('/:id/puntuacion', (req, res) => {
+    let sql = `update libros set puntuacion = ? 
+               where cod = ?;`;
+
+    let codigoRespuesta = 0;
+    let puntuacion = req.body.puntuacion;
+    let idLibro = req.params.id;
+    let respuesta = null;
+    let parametros = [puntuacion, idLibro];
+
+    let conexionBd = new Conexion();
+    conexionBd.consultaParametrizada(sql, parametros)
+        .then(resultado => {
+            codigoRespuesta = 200;
+
+            if (resultado.changedRows == 0) {
+                respuesta = {
+                    ok: false,
+                    mensaje: 'No se ha actualizado la puntuación'
+                };
+            }
+            else {
+                respuesta = {
+                    ok: true,
+                    mensaje: 'Puntuación actualizada correctamente'
+                };
+            }
+
+            res.status(codigoRespuesta)
+               .send(respuesta);
+        })
+        .catch(error => {
+            respuesta = {
+                ok: false,
+                mensaje: error.message
+            };
+
+            res.status(500)
+               .send(respuesta);
+        });
+});
+
+
 module.exports = router;
