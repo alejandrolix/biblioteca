@@ -177,6 +177,9 @@ router.get('/:id', (req, res) => {
                 };
             }
             else {
+                let urlImagen = 'public/imagenes/' + libro[0].imagen;
+
+                Imagen.cargar(urlImagen, libro[0]);
                 codigoRespuesta = 200;
                 respuesta = {
                     ok: true,
