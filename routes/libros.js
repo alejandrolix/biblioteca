@@ -41,24 +41,9 @@ router.get('/', (req, res) => {
             let libros = resultado;
 
             for (let i = 0; i < libros.length;  i++) {
-                let libro = libros[i];
-                let urlImagen = 'public/imagenes/' + libro.imagen;
-                let imgBase64 = null;
-                let formatoImagen = null;
+                let urlImagen = 'public/imagenes/' + libros[i].imagen;
 
-                if (!Imagen.existeImagen(urlImagen)) {
-                    imgBase64 = Imagen.convertirABase64('public/imagenes/noDisponible.png');
-                    formatoImagen = 'png';
-                }
-                else {
-                    imgBase64 = Imagen.convertirABase64(urlImagen);
-                    formatoImagen = urlImagen.split('.')[1];
-                }
-
-                libro.imagen = {
-                    imagen: imgBase64,
-                    formato: formatoImagen
-                }
+                Imagen.cargar(urlImagen, libros[i]);
             }
 
             respuesta = {
@@ -99,24 +84,9 @@ router.get('/activos', (req, res) => {
             let libros = resultado;
 
             for (let i = 0; i < libros.length;  i++) {
-                let libro = libros[i];
-                let urlImagen = 'public/imagenes/' + libro.imagen;
-                let imgBase64 = null;
-                let formatoImagen = null;
+                let urlImagen = 'public/imagenes/' + libros[i].imagen;
 
-                if (!Imagen.existeImagen(urlImagen)) {
-                    imgBase64 = Imagen.convertirABase64('public/imagenes/noDisponible.png');
-                    formatoImagen = 'png';
-                }
-                else {
-                    imgBase64 = Imagen.convertirABase64(urlImagen);
-                    formatoImagen = urlImagen.split('.')[1];
-                }
-
-                libro.imagen = {
-                    imagen: imgBase64,
-                    formato: formatoImagen
-                }
+                Imagen.cargar(urlImagen, libros[i]);
             }
 
             respuesta = {
@@ -157,24 +127,9 @@ router.get('/noActivos', (req, res) => {
             let libros = resultado;
 
             for (let i = 0; i < libros.length;  i++) {
-                let libro = libros[i];
-                let urlImagen = 'public/imagenes/' + libro.imagen;
-                let imgBase64 = null;
-                let formatoImagen = null;
+                let urlImagen = 'public/imagenes/' + libros[i].imagen;
 
-                if (!Imagen.existeImagen(urlImagen)) {
-                    imgBase64 = Imagen.convertirABase64('public/imagenes/noDisponible.png');
-                    formatoImagen = 'png';
-                }
-                else {
-                    imgBase64 = Imagen.convertirABase64(urlImagen);
-                    formatoImagen = urlImagen.split('.')[1];
-                }
-
-                libro.imagen = {
-                    imagen: imgBase64,
-                    formato: formatoImagen
-                }
+                Imagen.cargar(urlImagen, libros[i]);
             }
 
             respuesta = {

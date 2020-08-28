@@ -49,6 +49,25 @@ class Imagen {
 
         return buffer;
     }
+
+    static cargar(urlImagen, libro) {
+        let imgBase64 = null;
+        let formatoImagen = null;
+
+        if (!Imagen.existeImagen(urlImagen)) {
+            imgBase64 = Imagen.convertirABase64('public/imagenes/noDisponible.png');
+            formatoImagen = 'png';
+        }
+        else {
+            imgBase64 = Imagen.convertirABase64(urlImagen);
+            formatoImagen = urlImagen.split('.')[1];
+        }
+
+        libro.imagen = {
+            imagen: imgBase64,
+            formato: formatoImagen
+        }
+    }
 }
 
 module.exports = Imagen;
