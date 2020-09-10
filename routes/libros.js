@@ -320,7 +320,7 @@ router.put('/:id', (req, res) => {
         IMAGEN: req.body.imagen
     };
 
-    if (libro.IMAGEN.length >= 1) {
+    if (libro.IMAGEN != null && libro.IMAGEN.length >= 1) {
         let imagen = new Imagen();
         let estaGuardada = imagen.guardarImagenLibro(libro);
 
